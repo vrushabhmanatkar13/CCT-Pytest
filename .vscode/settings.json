@@ -1,0 +1,7 @@
+{
+    "python.analysis.diagnosticSeverityOverrides": {},
+    "python.linting.flake8Args": [
+        "--select=E901,E999,F821,F822,F823,F841",
+        "--max-line-length=120"
+    ]
+}

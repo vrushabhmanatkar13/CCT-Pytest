@@ -1,0 +1,105 @@
+{
+    "Page Titles": {
+        "home_page": "Correlation-Tool Book Dashboard",
+        "rest_password": "Request Password Reset - ICC"
+    },
+    "Alert": {
+        "success": "Action completed successfully.",
+        "error": "An error occurred. Please try again later.",
+        "yes_proceed": "Yes, proceed",
+        "cancel": "Cancel"
+    },
+    "Dashboard": {
+        "view_project": "View Project",
+        "project_details": "Project Details",
+        "chapter_version": "Chapter Versions",
+        "delete": "Delete",
+        "close": "Close",
+        "re-open": "Re-Open",
+        "yes": "Yes"
+    },
+    "Add Project": {
+        "project_name": "Project Name",
+        "title": "Title",
+        "project_type": "Project Type",
+        "version_type": "Version Type",
+        "category": "Category",
+        "select_base_book": "Select Base Book",
+        "add_project": "Add Project",
+        "cancel": "Cancel",
+        "clear_from": "Clear Form"
+    },
+    "Base Book": {
+        "group": "Group",
+        "book_year": "Book Year",
+        "printing": "Printing",
+        "book": "Book",
+        "select": "Select"
+    },
+    "Project View": {
+        "def_management": "Definition Management",
+        "ext_link_management": "External Links Management",
+        "load_proposals": "Load Proposals",
+        "show_chap_version": "Show Chapter Versions",
+        "save_order": "Save"
+    },
+    "Chapter View": {
+        "open_chapter": "Open Chapter Or Appendix",
+        "validate_links": "Validate Links",
+        "ready_rel_pubs": "Ready Release Pubs",
+        "return_to_pubs": "Return to PUBS",
+        "complete": "Complete",
+        "cdp_access_syn": "cdpAccess Sync",
+        "notes": "Notes"
+    },
+    "Content Edit": {
+        "set_chap_ordinal": "Set Chapter Ordinal",
+        "set_section_ordinal": "Set Section Ordinal",
+        "save_draft": "Save Draft",
+        "save_final": "Save Final",
+        "delete_chapter": "Delete Entire Chapter",
+        "delete_section": "Delete Entire Section",
+        "cancel": "Cancel",
+        "title": "Title",
+        "content": "Content",
+        "chapter_label": "Chapter Label",
+        "chapter_ordinal": "Chapter Ordinal",
+        "chapter_title": "Chapter Title",
+        "chapter_content": "Chapter Content",
+        "section_ordinal": "Section Ordinal",
+        "section_title": "Section Title",
+        "section_content": "Section Content",
+        "fm_chapter_title": "Frontmatter Chapter Title",
+        "fm_chapter_content": "rontmatter Chapter Content",
+        "fig_title": "Figure Title",
+        "fig_note_above": "Figure Note Above Title",
+        "fig_note_below": "Figure Note Below Title",
+        "fig_alt": "Figure Alt Text",
+        "set_appendix_ordinal": "Set Appendix Ordinal",
+        "appendix_title": "Appendix Title",
+        "appendix_content": "Appendix Content",
+        "delete_appendix": "Delete Entire Appendix",
+        "appendix_ordinal": "Appendix Ordinal"
+    },
+    "Footer_model": {
+        "new_chapter": "Add New Chapter",
+        "new_appendix": "Add New Appendix",
+        "new_fm_chapter": "Add New Frontmatter Chapter",
+        "new_code_element": "Add New Code Element"
+    },
+    "Relocate alert": {
+        "validate_location": "Validate Location",
+        "relocate_chapter": "Relocate Chapter",
+        "relocate_section": "Relocate Section",
+        "relocate_fig": "Relocate Figure",
+        "relocate_appendix": "Relocate Appendix"
+    },
+    "New Code Element": {
+        "section": "Section",
+        "figure": "Figure",
+        "table": "Table",
+        "defination": "Defination",
+        "ref_std": "Referenced Standard",
+        "equation": "Equation"
+    }
+}
