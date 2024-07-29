@@ -334,7 +334,8 @@ class Test_Fm_Chapter_Overview(Test_Base):
         assert fm_section in section_name
         self.chap_overview.click_active_fig()
         self.chap_overview.click_fm_no_title_checkbox()
-        self.chap_overview.enter_text_in_textbox(TITLE, Section)
+        time.sleep(1)
+        self.chap_overview.enter_text_in_title_textbox(Section)
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
         draft_msg = self.viewprojectpage.get_alert_message()
         self.baseclass.wait_loadder_dissappried()
