@@ -168,6 +168,7 @@ class Chapter_Overview_page:
     @allure.step("Enter Text in Title")
     def enter_text_in_title_textbox(self, text):
         self.baseclass.wait_loadder_dissappried()
+        self.baseclass.wait_until(self.__title_textbox).clear()
         self.action.click(self.baseclass.wait_until(self.__title_textbox)).send_keys(
             text
         ).perform()
