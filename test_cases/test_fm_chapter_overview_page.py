@@ -332,7 +332,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         fm_section = self.chap_overview.get_fm_hidden_title_name(No_title_name)
         Baseclass.assert_true(title_field)
         assert fm_section in section_name
-        self.chap_overview.click_on_active_content()
+        self.chap_overview.click_on_section_on_toc(No_title_name)
         self.chap_overview.click_fm_no_title_checkbox()
         self.chap_overview.enter_text_in_textbox(TITLE, Section)
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
