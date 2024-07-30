@@ -18,6 +18,8 @@
   "test_cases/test_add_project_page.py::Test_Add_Project_Page::test_clear_from_add_new_project",
   "test_cases/test_add_project_page.py::Test_Add_Project_Page::test_select_base_book",
   "test_cases/test_add_project_page.py::Test_Add_Project_Page::test_select_group",
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_value",
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_value_print",
   "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_add_figure_at_appendix[Section-Automation Appendix Section Figure-Fig Alt section]",
   "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_add_figure_at_appendix[Sub-Section-Automation Appendix Sub Section Figure-Fig Alt sub section]",
   "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_add_new_appendix",

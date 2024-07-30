@@ -90,5 +90,19 @@
   "test_cases/test_chapter_overview_page.py::Test_Chapter_Overview::test_verify_cancel_edit_figure[Automation Sub Section Figure]": true,
   "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_cancel_edit_appendix_figure[Automation Appendix Sub Section Figure]": true,
   "test_cases/test_fm_chapter_overview_page.py::Test_Fm_Chapter_Overview::test_verify_cancel_edit_fm_chapter": true,
-  "test_cases/test_fm_chapter_overview_page.py::Test_Fm_Chapter_Overview::test_verify_delete_fm_figure": true
+  "test_cases/test_fm_chapter_overview_page.py::Test_Fm_Chapter_Overview::test_verify_delete_fm_figure": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_open_Appendix_content": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_cancel_edit_chapter": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_edit_appendix_title_content": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_add_new_appendix": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_add_new_appendix_section": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_add_new_appendix_sub_section": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_add_figure_at_appendix[Section-Automation Appendix Section Figure-Fig Alt section]": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_add_figure_at_appendix[Sub-Section-Automation Appendix Sub Section Figure-Fig Alt sub section]": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_cancel_edit_appendix_figure[Automation Appendix Section Figure]": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_delete_figure_at_appendix[Automation Appendix Section Figure]": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_delete_figure_at_appendix[Automation Appendix Sub Section Figure]": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_delete_appendix_sub_section": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_delete_appendix_section": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_delete_appendix_chapter": true
 }
