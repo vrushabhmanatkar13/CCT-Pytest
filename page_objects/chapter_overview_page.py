@@ -1,10 +1,6 @@
-from multiprocessing import set_forkserver_preload
 import os
-from re import T
 import time
-from tkinter import E
 from selenium.webdriver.common.keys import Keys
-
 from uitility.baseclass import Baseclass
 from selenium.webdriver.common.by import By
 import allure
