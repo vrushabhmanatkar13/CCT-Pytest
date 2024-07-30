@@ -1,10 +1,6 @@
-from multiprocessing import set_forkserver_preload
 import os
-from re import T
 import time
-from tkinter import E
 from selenium.webdriver.common.keys import Keys
-
 from uitility.baseclass import Baseclass
 from selenium.webdriver.common.by import By
 import allure
@@ -146,7 +142,6 @@ class Chapter_Overview_page:
 
     @allure.step("Edit content of {textbox_name}")
     def edit_contant(self, textbox_name, content_text):
-        self.baseclass.wait_loadder_dissappried()
         textbox = (By.XPATH, self.__textboxs.format(text=textbox_name))
         if content_text in self.baseclass.get_text_javascript_executor(textbox):
             text = self.baseclass.get_text(textbox).replace(content_text, "").strip()

@@ -86,10 +86,11 @@
   "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_cancel_edit_figure[Automation Appendix Section Figure]": true,
   "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_cancel_edit_figure[Automation Appendix Sub Section Figure]": true,
   "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_delete_new_chapter": true,
-  "test_cases/test_fm_chapter_overview_page.py::Test_Fm_Chapter_Overview::test_verify_delete_fm_figure": true,
   "test_cases/test_fm_chapter_overview_page.py::Test_Fm_Chapter_Overview::test_verify_add_fm_section_with_no_title_associated[Automation Fm Section-SECTION_CONTENT]": true,
-  "test_cases/test_fm_chapter_overview_page.py::Test_Fm_Chapter_Overview::test_verify_add_fm_section_with_no_title_associated[Automation Fm Figure-FIGURE_CONTENT]": true,
-  "test_cases/test_fm_chapter_overview_page.py::Test_Fm_Chapter_Overview::test_verify_delete_fm_section": true,
-  "test_cases/test_chapter_overview_page.py::Test_Chapter_Overview::test_verify_cancel_edit_chapter": true,
-  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_delete_appendix_chapter": true
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_delete_appendix_chapter": true,
+  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_remove_project[INACTIVE PROJECTS-Delete]": true,
+  "test_cases/test_chapter_overview_page.py::Test_Chapter_Overview::test_verify_edit_chapter_title_content": true,
+  "test_cases/test_chapter_overview_page.py::Test_Chapter_Overview::test_verify_add_figure_at_section[Sub-Section-Automation Sub Section Figure-Fig Alt text sub section]": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_cancel_edit_appendix_figure[Automation Appendix Section Figure]": true,
+  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_cancel_edit_appendix_figure[Automation Appendix Sub Section Figure]": true
 }
