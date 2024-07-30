@@ -333,7 +333,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         Baseclass.assert_true(title_field)
         assert fm_section in section_name
         time.sleep(1)
-        self.chap_overview.click_active_fig()
+        self.chap_overview.click_on_active_content()
         self.chap_overview.click_fm_no_title_checkbox()
         time.sleep(1)
         self.chap_overview.enter_text_in_title_textbox(Section)

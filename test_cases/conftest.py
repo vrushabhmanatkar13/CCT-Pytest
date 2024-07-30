@@ -13,7 +13,6 @@ from pytest_html import extras
 from uitility.read_config import get_josn_data, read_config
 import allure
 
-
 # print(sys.path)
 # parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 # sys.path.insert(0, parent_dir)
@@ -107,14 +106,6 @@ def pytest_runtest_makereport(item, call):
                 driver.get_screenshot_as_png(), image, allure.attachment_type.PNG
             )
         report.extras = extra
-
-
-def pytest_sessionfinish(session):
-    import subprocess
-
-    subprocess.run(
-        ["allure", "generate", "--clean", "allure-results", "-o", "allure-report"]
-    )
 
 
 @pytest.fixture(
