@@ -332,6 +332,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         fm_section = self.chap_overview.get_fm_hidden_title_name(No_title_name)
         Baseclass.assert_true(title_field)
         assert fm_section in section_name
+        time.sleep(1)
         self.chap_overview.click_active_fig()
         self.chap_overview.click_fm_no_title_checkbox()
         time.sleep(1)

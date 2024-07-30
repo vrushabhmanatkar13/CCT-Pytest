@@ -109,6 +109,14 @@ def pytest_runtest_makereport(item, call):
         report.extras = extra
 
 
+def pytest_sessionfinish(session):
+    import subprocess
+
+    subprocess.run(
+        ["allure", "generate", "--clean", "allure-results", "-o", "allure-report"]
+    )
+
+
 @pytest.fixture(
     scope="session", autouse=True
 )  # Autouse true will run first then autouse false
