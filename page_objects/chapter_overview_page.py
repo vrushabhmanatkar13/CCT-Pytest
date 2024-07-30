@@ -146,7 +146,6 @@ class Chapter_Overview_page:
 
     @allure.step("Edit content of {textbox_name}")
     def edit_contant(self, textbox_name, content_text):
-        self.baseclass.wait_loadder_dissappried()
         textbox = (By.XPATH, self.__textboxs.format(text=textbox_name))
         if content_text in self.baseclass.get_text_javascript_executor(textbox):
             text = self.baseclass.get_text(textbox).replace(content_text, "").strip()
