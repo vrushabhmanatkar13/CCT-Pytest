@@ -6,7 +6,14 @@ import allure
 import pytest
 from test_cases import conftest
 from test_cases.test_base import Test_Base
-from test_cases.test_dashboard_page import PROJECT_NAME, TITLE, VIEW_PROJECT
+from test_cases.test_dashboard_page import (
+    CLOSE,
+    DELETE,
+    PROJECT_NAME,
+    TITLE,
+    VIEW_PROJECT,
+    YES,
+)
 from uitility.baseclass import Baseclass
 
 SELECT_BASE_BOOK = conftest.json_obj["Add Project"]["select_base_book"]
@@ -25,7 +32,8 @@ VERSION_TYPE = conftest.json_obj["Add Project"]["version_type"]
 CATEGORY = conftest.json_obj["Add Project"]["category"]
 
 
-@pytest.mark.third
+@pytest.mark.Add_Project
+@pytest.mark.order(index=2)
 @allure.feature("Add Project")
 @allure.tag("Add Project Page")
 class Test_Add_Project_Page(Test_Base):
@@ -90,14 +98,29 @@ class Test_Add_Project_Page(Test_Base):
         Baseclass.assert_false(self.addproject_page.get_selected_option(CATEGORY))
         Baseclass.assert_true(self.addproject_page.get_error_message())
 
+    @pytest.fixture(scope="function")
+    def check_for_duplicate_project(self):
+        if (
+            self.dashboardpage.check_project_display(
+                "2021 International Mechanical Code"
+            )
+            == "2021 International Mechanical Code"
+        ):
+            for tab, button in [
+                ("ACTIVE PROJECTS", CLOSE),
+                ("INACTIVE PROJECTS", DELETE),
+            ]:
+                self.dashboardpage.click_tabs(tab)
+                self.dashboardpage.click_project_name(
+                    "2021 International Mechanical Code"
+                )
+                self.dashboardpage.click_dashboard_button(button)
+                self.dashboardpage.click_on_alert_button(YES)
+                self.dashboardpage.wait_alert_dissappired()
+
     @allure.title("Verify Add new project")
     @allure.severity(allure.severity_level.CRITICAL)
-    @pytest.mark.dependency(
-        depends=[
-            "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_remove_project[ACTIVE PROJECTS-Close]"
-        ],
-        scope="session",
-    )
+    @pytest.mark.usefixtures("check_for_duplicate_project")
     def test_add_new_project(self):
         self.dashboardpage.click_add_project()
         self.addproject_page.wait_buttons_to_load()
@@ -115,7 +138,7 @@ class Test_Add_Project_Page(Test_Base):
             .strip()
         )
         time.sleep(2)
-        number = str(random.randint(2013, 2024))
+        number = str(random.randint(2011, 2024))
         char = random.choice(string.ascii_uppercase)
         self.addproject_page.fill_add_project_form(
             "IMC" + char + number,

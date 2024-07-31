@@ -189,7 +189,7 @@ class Chapter_Overview_page:
     def select_section_label(self, label_text):
         element = (By.XPATH, self.__get_text_textboxs.format(text="Section Label"))
         self.baseclass.click(element)
-        time.sleep(1)
+        time.sleep(1.0)
         options = self.baseclass.wait_until_elements(self.__label_options)
         self.action.move_to_element(options[0]).perform()
         for i in options:
@@ -225,10 +225,10 @@ class Chapter_Overview_page:
         for i in self.baseclass.wait_until_elements(self.__all_buttons):
             if i.text == text:
                 self.baseclass.click_javascript_executor_element(i)
+                self.baseclass.wait_loadder_dissappried()
                 break
         else:
             raise Exception(f"Button: {text} Not found")
-        self.baseclass.wait_loadder_dissappried()
 
     @allure.step("Get chapter status from TOC")
     def get_chapter_status_toc(self):
@@ -264,7 +264,9 @@ class Chapter_Overview_page:
     @allure.step("Click on sub {sub_section_name} from TOC")
     def click_on_sub_section_on_toc(self, sub_section_name):
         for i in self.baseclass.wait_until_elements(self.__sub_section_name_toc):
-            if sub_section_name in i.text:
+            if sub_section_name in self.baseclass.get_text_javascript_executor_element(
+                i
+            ):
                 self.baseclass.click_javascript_executor_element(i)
                 break
         else:
@@ -342,7 +344,7 @@ class Chapter_Overview_page:
     def click_on_chapter(self):
         """To Click on Chapter"""
         element = self.baseclass.wait_until_elements(self.__chapter_heading)
-        self.baseclass.click(element[0])
+        self.baseclass.click_javascript_executor_element(element[0])
         self.baseclass.wait_loadder_dissappried()
 
     @allure.step("Click on Active content")
