@@ -9,7 +9,8 @@ HOME_PAGE = conftest.json_obj["Page Titles"]["home_page"]
 RESET_PASSWORD_PAGE = conftest.json_obj["Page Titles"]["rest_password"]
 
 
-@pytest.mark.first
+@pytest.mark.Login
+@pytest.mark.order(index=0)
 @allure.feature("Login")
 @allure.tag("Login Page")
 class Test_Login_Page(Test_Base):

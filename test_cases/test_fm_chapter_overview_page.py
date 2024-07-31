@@ -26,7 +26,8 @@ FM_CHAP_CONTENT = conftest.json_obj["Content Edit"]["fm_chapter_content"]
 NEW_FM_CHAPTER = conftest.json_obj["Footer_model"]["new_fm_chapter"]
 
 
-@pytest.mark.sixth
+@pytest.mark.Fm_Chapter
+@pytest.mark.order(index=5)
 @allure.epic("Fm Chapter Overview and Content")
 @allure.tag("Fm Chapter Overview/Content page")
 class Test_Fm_Chapter_Overview(Test_Base):
@@ -61,10 +62,10 @@ class Test_Fm_Chapter_Overview(Test_Base):
         # Save Draft
 
         self.chap_overview.click_on_chapter()
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.edit_contant(FM_CHAP_TITLE, "TEST")
         self.chap_overview.edit_contant(FM_CHAP_CONTENT, "Test")
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
         draft_msg = self.viewprojectpage.get_alert_message()
         self.baseclass.wait_loadder_dissappried()
@@ -76,7 +77,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         self.chap_overview.click_on_chapter()
         self.chap_overview.edit_contant(FM_CHAP_TITLE, "FINAL")
         self.chap_overview.edit_contant(FM_CHAP_CONTENT, "Final")
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.click_edit_page_button(SAVE_FINAL)
         final_msg = self.viewprojectpage.get_alert_message()
         self.baseclass.wait_loadder_dissappried()
@@ -123,10 +124,10 @@ class Test_Fm_Chapter_Overview(Test_Base):
 
         self.chap_overview.click_on_section_on_toc("Section Introduction")
         self.chap_overview.click_on_active_content()
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.edit_contant(TITLE, "TEST")
         self.chap_overview.edit_contant(CONTENT, "Test")
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
         draft_msg = self.viewprojectpage.get_alert_message()
         self.baseclass.wait_loadder_dissappried()
@@ -138,7 +139,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         self.chap_overview.click_on_active_content()
         self.chap_overview.edit_contant(TITLE, "FINAL")
         self.chap_overview.edit_contant(CONTENT, "Final")
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.click_edit_page_button(SAVE_FINAL)
         final_msg = self.viewprojectpage.get_alert_message()
         self.baseclass.wait_loadder_dissappried()
@@ -163,9 +164,9 @@ class Test_Fm_Chapter_Overview(Test_Base):
     def test_verify_add_new_fm_chapter(self):
         self.dashboardpage.click_project_name("2021 International Mechanical Code")
         self.dashboardpage.click_dashboard_button(VIEW_PROJECT)
-        time.sleep(1)
+        time.sleep(1.0)
         self.header_footer.click_on_add_new()
-        time.sleep(1)
+        time.sleep(1.0)
         self.header_footer.click_on_model_list(NEW_FM_CHAPTER)
         self.chap_overview.enter_text_in_textbox(FM_CHAP_TITLE, "AUTOMATION FM")
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
@@ -173,14 +174,14 @@ class Test_Fm_Chapter_Overview(Test_Base):
         fm_chapters = self.viewprojectpage.get_all_fm_chapter_name()
         self.viewprojectpage.click_on_chapter("AUTOMATION FM")
         self.chap_overview.click_on_button(OPEN_CHAPTER)
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.click_on_chapter()
         self.chap_overview.enter_text_in_textbox(FM_CHAP_TITLE, " FINAL")
         self.chap_overview.click_edit_page_button(SAVE_FINAL)
         final_msg = self.viewprojectpage.get_alert_message()
         fm_chapters_name = self.chap_overview.get_chapter_heading()
         self.viewprojectpage.click_pervios_breadcum()
-        time.sleep(1)
+        time.sleep(1.0)
         fm_chapters_final = self.viewprojectpage.get_all_fm_chapter_name()
 
         Baseclass.assert_equals(draft_msg, SUCCESS)
@@ -199,7 +200,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         self.viewprojectpage.click_on_chapter("AUTOMATION FM FINAL")
         self.chap_overview.click_on_button(OPEN_CHAPTER)
         self.header_footer.click_on_add_new()
-        time.sleep(1)
+        time.sleep(1.0)
         self.header_footer.click_on_model_list(NEW_CODE_ELEMENT)
 
         self.header_footer.click_on_code_element_button(SECTION)
@@ -238,7 +239,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         self.viewprojectpage.click_on_chapter("AUTOMATION FM FINAL")
         self.chap_overview.click_on_button(OPEN_CHAPTER)
         self.header_footer.click_on_add_new()
-        time.sleep(1)
+        time.sleep(1.0)
         self.header_footer.click_on_model_list(NEW_CODE_ELEMENT)
         self.header_footer.click_on_code_element_button(FIGURE)
         result = self.chap_overview.upload_figure("Test Data/JPG_Valid.jpeg")
@@ -249,7 +250,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         self.chap_overview.enter_text_in_textbox(FIG_ALT, "Fig Alt text")
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
         draft_msg = self.viewprojectpage.get_alert_message()
-        time.sleep(1)
+        time.sleep(1.0)
         draft_status = self.chap_overview.get_section_indicator("Automation Fm Figure")
         draft_fm_chap_status = self.chap_overview.get_chapter_status_toc()
         alt_text = self.chap_overview.check_fig_showing_get_alt_text()
@@ -260,7 +261,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         edit_fig_name = self.chap_overview.get_edit_heading_text()
         self.chap_overview.click_edit_page_button(SAVE_FINAL)
         final_msg = self.viewprojectpage.get_alert_message()
-        time.sleep(1)
+        time.sleep(1.0)
         final_status = self.chap_overview.get_section_indicator("Automation Fm Figure")
         final_fm_chap_status = self.chap_overview.get_chapter_status_toc()
         # Baseclass.assert_true(result)
@@ -332,10 +333,10 @@ class Test_Fm_Chapter_Overview(Test_Base):
         fm_section = self.chap_overview.get_fm_hidden_title_name(No_title_name)
         Baseclass.assert_true(title_field)
         assert fm_section in section_name
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.click_on_active_content()
         self.chap_overview.click_fm_no_title_checkbox()
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.enter_text_in_title_textbox(Section)
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
         draft_msg = self.viewprojectpage.get_alert_message()
@@ -354,7 +355,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         self.chap_overview.click_on_section_on_toc("Automation Fm Figure")
         self.chap_overview.click_active_fig()
         self.chap_overview.click_edit_page_button(DELETE)
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.click_relocate_alt_button(DELETE)
         fig_name_result = self.chap_overview.check_section_deleted(
             "Automation Fm Figure"
@@ -372,11 +373,11 @@ class Test_Fm_Chapter_Overview(Test_Base):
         self.dashboardpage.click_dashboard_button(VIEW_PROJECT)
         self.viewprojectpage.click_on_chapter("AUTOMATION FM FINAL")
         self.chap_overview.click_on_button(OPEN_CHAPTER)
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.click_on_section_on_toc("Automation Fm Section")
         self.chap_overview.click_on_active_content()
         self.chap_overview.click_edit_page_button(DELETE)
-        time.sleep(1)
+        time.sleep(1.0)
         self.chap_overview.click_relocate_alt_button(DELETE)
         section_name_result = self.chap_overview.check_section_deleted(
             "Automation Fm Section"
@@ -384,3 +385,24 @@ class Test_Fm_Chapter_Overview(Test_Base):
         section_text_result = self.chap_overview.check_fm_section_text_strick_through()
         Baseclass.assert_true(section_name_result)
         Baseclass.assert_true(section_text_result)
+
+    @allure.feature("Frontmatter")
+    @allure.title("Verify Delete Fm Chapter")
+    @allure.severity(allure.severity_level.BLOCKER)
+    # @pytest.mark.dependency(depends=["test_verify_add_new_fm_chapter"], scope="class")
+    def test_verify_delete_fm_chapter(self):
+        self.dashboardpage.click_project_name("2021 International Mechanical Code")
+        self.dashboardpage.click_dashboard_button(VIEW_PROJECT)
+        self.viewprojectpage.click_on_chapter("AUTOMATION FM FINAL")
+        self.chap_overview.click_on_button(OPEN_CHAPTER)
+        time.sleep(1.0)
+        self.chap_overview.click_on_chapter()
+        self.chap_overview.click_edit_page_button(DELETE)
+        time.sleep(1.0)
+        self.chap_overview.click_relocate_alt_button(DELETE)
+        msg = self.viewprojectpage.get_alert_message()
+        chapter_result = self.viewprojectpage.check_chapter_deleted(
+            "AUTOMATION FM FINAL"
+        )
+        Baseclass.assert_equals(SUCCESS, msg)
+        Baseclass.assert_true(chapter_result)

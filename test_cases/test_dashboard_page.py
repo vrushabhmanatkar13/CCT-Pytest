@@ -18,7 +18,8 @@ PROJECT_NAME = conftest.json_obj["Add Project"]["project_name"]
 TITLE = conftest.json_obj["Add Project"]["title"]
 
 
-@pytest.mark.second
+@pytest.mark.Dashboard
+@pytest.mark.order(index=1)
 @allure.feature("Dashboard")
 @allure.tag("Dahsboard Page")
 class Test_Dashboard_Page(Test_Base):
@@ -65,7 +66,7 @@ class Test_Dashboard_Page(Test_Base):
         # self.dashboardpage.click_tabs(tab_name)
         category_name = self.dashboardpage.get_first_category()
         self.dashboardpage.select_category(category_name)
-        time.sleep(1)
+        time.sleep(1.0)
         category_project = self.dashboardpage.get_project_count()
         self.dashboardpage.click_clear_category()
         result = self.dashboardpage.get_selecated_category_displayed()
@@ -95,7 +96,7 @@ class Test_Dashboard_Page(Test_Base):
         project_name = self.dashboardpage.get_first_project_name()
         self.dashboardpage.enter_text_title_textbox(project_name)
         result_count = self.dashboardpage.get_project_count()
-        time.sleep(1)
+        time.sleep(1.0)
         self.dashboardpage.click_clear_title()
         project__count = self.dashboardpage.get_project_count()
         Baseclass.assert_not_equals(project__count, result_count)
@@ -171,13 +172,13 @@ class Test_Dashboard_Page(Test_Base):
         ("tab_name", "alert_text"),
         [("ACTIVE PROJECTS", CLOSE), ("INACTIVE PROJECTS", DELETE)],
     )
-    @pytest.mark.dependency()
     def test_remove_project(self, tab_name, alert_text):
         self.dashboardpage.click_tabs(tab_name)
-        self.dashboardpage.enter_text_title_textbox(
-            "2021 International Mechanical Code first printing"
+        project_name = self.dashboardpage.check_project_display(
+            "2021 International Mechanical Code"
         )
-        self.dashboardpage.click_project_name("2021 International Mechanical Code")
+        self.dashboardpage.enter_text_title_textbox(project_name)
+        self.dashboardpage.click_project_name(project_name)
         self.dashboardpage.click_dashboard_button(alert_text)
         act_alert_text = self.dashboardpage.get_alert_text()
         self.dashboardpage.click_on_alert_button(YES)

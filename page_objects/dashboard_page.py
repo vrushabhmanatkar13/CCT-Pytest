@@ -211,6 +211,8 @@ class Dashboard_Page:
             if i.text == project_name:
                 i.click()
                 break
+        else:
+            raise Exception(f"{project_name} is not showing on Dashboard")
 
     @allure.step("Get Dashboard buttons text")
     def get_dashboard_button_text(self):
@@ -228,7 +230,7 @@ class Dashboard_Page:
 
     @allure.step("Get Chapter version")
     def get_chapter_version_count(self):
-        time.sleep(1)
+        time.sleep(1.0)
         text = self.baseclass.get_text_javascript_executor(self.__version_count)
         with allure.step(text):
             return text
@@ -261,15 +263,18 @@ class Dashboard_Page:
                 i.click()
                 break
 
-    @allure.step("Check Project is display")
+    @allure.step("Select Project is display on dashboard")
     def check_project_display(self, project_name):
         """To check project present on dashboard
         If not the retun first project name.
         """
+        text = ""
         for i in self.get_row_data("Project Name"):
             if i.text == project_name:
-                return i.text
+                text = i.text
+                break
         else:
             text = self.get_first_project_name()
-            with allure.step(f"Selected Project {text}"):
-                return text
+
+        with allure.step(f"Selected Project {text}"):
+            return text

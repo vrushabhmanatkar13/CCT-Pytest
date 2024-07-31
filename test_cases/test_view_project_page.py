@@ -14,7 +14,8 @@ SHOW_CHAP_VERSION = conftest.json_obj["Project View"]["show_chap_version"]
 SAVE_ORDER = conftest.json_obj["Project View"]["save_order"]
 
 
-@pytest.mark.fourth
+@pytest.mark.View_Project
+@pytest.mark.order(index=3)
 @allure.tag("Project View Page")
 @allure.epic("Project Overview")
 class Test_View_Project_Page(Test_Base):

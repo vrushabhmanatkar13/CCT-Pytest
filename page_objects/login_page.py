@@ -54,7 +54,7 @@ class Login_Page:
             email
         ).perform()
         self.action.click(self.baseclass.wait_until(self.password_textbox)).perform()
-        time.sleep(1)
+        time.sleep(0.5)
         self.baseclass.click(self.logo)
         return self.baseclass.wait_until(self.login_button).is_enabled()
 
