@@ -264,9 +264,7 @@ class Chapter_Overview_page:
     @allure.step("Click on sub {sub_section_name} from TOC")
     def click_on_sub_section_on_toc(self, sub_section_name):
         for i in self.baseclass.wait_until_elements(self.__sub_section_name_toc):
-            if sub_section_name in self.baseclass.get_text_javascript_executor_element(
-                i
-            ):
+            if sub_section_name in i.text:
                 self.baseclass.click_javascript_executor_element(i)
                 break
         else:
