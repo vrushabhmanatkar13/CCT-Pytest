@@ -287,6 +287,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         self.dashboardpage.click_dashboard_button(VIEW_PROJECT)
         self.viewprojectpage.click_on_chapter("AUTOMATION FM FINAL")
         self.chap_overview.click_on_button(OPEN_CHAPTER)
+        time.sleep(0.5)
         self.chap_overview.click_on_section_on_toc("Automation Fm Figure")
         act_alt_text = self.chap_overview.check_fig_showing_get_alt_text()
         act_fig_title = self.chap_overview.get_fig_title_text()
