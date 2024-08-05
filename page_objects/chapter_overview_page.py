@@ -102,7 +102,7 @@ class Chapter_Overview_page:
     __get_text_textboxs = "//p[contains(text(),'{text}')]/parent::div/div"
     __edit_page_buttons = (
         By.XPATH,
-        "//div[@class='v-col v-col-12 py-0']//span[@class='v-btn__content']",
+        "//div[contains(@class,'v-col v-col-12 py-')]//span[@class='v-btn__content']",
     )
     __label_options = (
         By.XPATH,
@@ -150,14 +150,17 @@ class Chapter_Overview_page:
             self.baseclass.click(textbox)
             self.baseclass.send_keys(textbox, final_text)
             # self.baseclass.send_keys(textbox, pyperclip.paste())
-        time.sleep(2)
+        time.sleep(1.0)
         self.baseclass.click(textbox)
         self.action.send_keys(Keys.PAGE_DOWN).send_keys(" " + content_text).perform()
 
     @allure.step("Enter text in {textbox_name}")
-    def enter_text_in_textbox(self, textbox_name, text):
+    def enter_text_in_textbox(self, textbox_name, text, clear=False):
         self.baseclass.wait_loadder_dissappried()
         textbox = (By.XPATH, self.__textboxs.format(text=textbox_name))
+        if clear:
+            self.baseclass.wait_until(textbox).clear()
+
         self.action.click(self.baseclass.wait_until(textbox)).send_keys(text).perform()
 
     @allure.step("Enter Text in Title")

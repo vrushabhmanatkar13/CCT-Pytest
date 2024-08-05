@@ -22,6 +22,7 @@ from test_cases.test_chapter_overview_page import (
     SECTION_ORDINAL,
     SECTION_TITLE,
     SET_SECTION_ORDINAL,
+    VALID_ORDINAL,
     VALIDATE_LOCATION,
 )
 from test_cases.test_dashboard_page import DELETE
@@ -176,7 +177,7 @@ class Test_Appendix_Overview(Test_Base):
         title = " ".join(["APPENDIX", appendix_ordinal, "AUTOMATION APPENDIX"])
         appen_status = self.viewprojectpage.get_chapter_status(title)
 
-        Baseclass.assert_equals("Valid Ordinal", validate_text)
+        Baseclass.assert_equals(VALID_ORDINAL, validate_text)
         Baseclass.assert_equals(SUCCESS, msg)
         Baseclass.assert_equals(title, appen_title)
         assert "Automation appendix content" in appen_content
