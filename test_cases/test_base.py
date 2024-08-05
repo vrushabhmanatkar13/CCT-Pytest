@@ -8,6 +8,7 @@ from page_objects.defination_management_page import Defination_Management
 from page_objects.external_link_management_page import External_Link_Management
 from page_objects.header_footer import Header_Footer
 from page_objects.login_page import Login_Page
+from page_objects.referenced_standards_overview_page import Referenced_Standards_Overview_Page
 from page_objects.view_project_page import View_Project_Page
 import test_cases.conftest as conftest
 from uitility.baseclass import Baseclass
@@ -62,6 +63,7 @@ class Test_Base:
             self.chap_overview = Chapter_Overview_page(self.baseclass)
             self.header_footer = Header_Footer(self.baseclass)
             self.appen_overview = Appendix_Overview_Page(self.baseclass)
+            self.ref_standards = Referenced_Standards_Overview_Page(self.baseclass)
 
     # @pytest.fixture(scope="class", autouse=True)
     # def setup_class(self):

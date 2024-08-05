@@ -36,7 +36,7 @@ SECTION_ORDINAL = conftest.json_obj["Content Edit"]["section_ordinal"]
 SECTION_TITLE = conftest.json_obj["Content Edit"]["section_title"]
 SECTION_CONTENT = conftest.json_obj["Content Edit"]["section_content"]
 
-
+SET_FIG_ORDINAL = conftest.json_obj["Content Edit"]["set_fig_ordinal"]
 FIG_TITLE = conftest.json_obj["Content Edit"]["fig_title"]
 FIG_NOTE_ABOVE = conftest.json_obj["Content Edit"]["fig_note_above"]
 FIG_NOTE_BELOW = conftest.json_obj["Content Edit"]["fig_note_below"]
@@ -50,13 +50,12 @@ VALIDATE_LOCATION = conftest.json_obj["Relocate alert"]["validate_location"]
 RELOCATE_CHAPTER = conftest.json_obj["Relocate alert"]["relocate_chapter"]
 RELOCATE_SECTION = conftest.json_obj["Relocate alert"]["relocate_section"]
 RELOCATE_FIG = conftest.json_obj["Relocate alert"]["relocate_fig"]
+VALID_ORDINAL = conftest.json_obj["Relocate alert"]["valid_ordinal_msg"]
+
 
 SECTION = conftest.json_obj["New Code Element"]["section"]
 FIGURE = conftest.json_obj["New Code Element"]["figure"]
 TABLE = conftest.json_obj["New Code Element"]["table"]
-DEFINATION = conftest.json_obj["New Code Element"]["defination"]
-REF_STD = conftest.json_obj["New Code Element"]["ref_std"]
-EQUATION = conftest.json_obj["New Code Element"]["equation"]
 
 
 @pytest.mark.Chapter
@@ -181,7 +180,7 @@ class Test_Chapter_Overview(Test_Base):
         title = " ".join(["CHAPTER", chap_ordinal, "AUTOMATION TEST"])
         chap_status = self.viewprojectpage.get_chapter_status(title)
 
-        Baseclass.assert_equals("Valid Ordinal", validate_text)
+        Baseclass.assert_equals(VALID_ORDINAL, validate_text)
         Baseclass.assert_equals(SUCCESS, msg)
         Baseclass.assert_equals(title, chap_title)
         assert "Automation chapter content" in chap_content
@@ -231,7 +230,7 @@ class Test_Chapter_Overview(Test_Base):
         sec_status_final = self.chap_overview.get_section_indicator(section)
         final_chap_status = self.chap_overview.get_chapter_status_toc()
 
-        Baseclass.assert_equals("Valid Ordinal", validate_text)
+        Baseclass.assert_equals(VALID_ORDINAL, validate_text)
         Baseclass.assert_equals(SUCCESS, msg)
         Baseclass.assert_equals(section, sec_title)
         Baseclass.assert_equals(section, currnet_breadcum)
@@ -290,7 +289,7 @@ class Test_Chapter_Overview(Test_Base):
         sec_status_final = self.chap_overview.get_sub_section_indicator(subsection)
         final_chap_status = self.chap_overview.get_chapter_status_toc()
 
-        Baseclass.assert_equals("Valid Ordinal", validate_text)
+        Baseclass.assert_equals(VALID_ORDINAL, validate_text)
         Baseclass.assert_equals(SUCCESS, msg)
         Baseclass.assert_equals(subsection, subsec_title)
         Baseclass.assert_equals(subsection, currnet_breadcum)
@@ -338,7 +337,7 @@ class Test_Chapter_Overview(Test_Base):
         time.sleep(1.0)
         self.header_footer.click_on_model_list(NEW_CODE_ELEMENT)
         self.header_footer.click_on_code_element_button(FIGURE)
-        self.chap_overview.click_edit_page_button("Set Figure Ordinal")
+        self.chap_overview.click_edit_page_button(SET_FIG_ORDINAL)
         time.sleep(1.0)
         self.chap_overview.enter_new_ordinal_text(section_number)
         self.chap_overview.click_relocate_alt_button(VALIDATE_LOCATION)
@@ -370,7 +369,7 @@ class Test_Chapter_Overview(Test_Base):
         final_status = self.chap_overview.get_sub_section_indicator(fig_title)
         final_fm_chap_status = self.chap_overview.get_chapter_status_toc()
 
-        Baseclass.assert_equals("Valid Ordinal", validate_text)
+        Baseclass.assert_equals(VALID_ORDINAL, validate_text)
         # Baseclass.assert_true(result)
         # assert "JPG_Valid.jpeg" in fig_name                               # this feature is changed
         Baseclass.assert_equals(SUCCESS, draft_msg)

@@ -71,6 +71,7 @@
         "section_content": "Section Content",
         "fm_chapter_title": "Frontmatter Chapter Title",
         "fm_chapter_content": "rontmatter Chapter Content",
+        "set_fig_ordinal": "Set Figure Ordinal",
         "fig_title": "Figure Title",
         "fig_note_above": "Figure Note Above Title",
         "fig_note_below": "Figure Note Below Title",
@@ -79,7 +80,15 @@
         "appendix_title": "Appendix Title",
         "appendix_content": "Appendix Content",
         "delete_appendix": "Delete Entire Appendix",
-        "appendix_ordinal": "Appendix Ordinal"
+        "appendix_ordinal": "Appendix Ordinal",
+        "set_promulgator_ordinal": "Set Promulgator Ordinal",
+        "promulgator_full_name": "Full Name",
+        "promulgator_acronym": "Acronym",
+        "promulgator_url": "URL Promulgator",
+        "promulgator_street_address": "Street Address",
+        "promulgator_city": "City",
+        "promulgator_state": "State",
+        "promulgator_postal_code": "Postal Code"
     },
     "Footer_model": {
         "new_chapter": "Add New Chapter",
@@ -92,7 +101,9 @@
         "relocate_chapter": "Relocate Chapter",
         "relocate_section": "Relocate Section",
         "relocate_fig": "Relocate Figure",
-        "relocate_appendix": "Relocate Appendix"
+        "relocate_appendix": "Relocate Appendix",
+        "relocate_promulgator": "Relocate Promulgator",
+        "valid_ordinal_msg": "Valid Ordinal"
     },
     "New Code Element": {
         "section": "Section",
@@ -100,6 +111,7 @@
         "table": "Table",
         "defination": "Defination",
         "ref_std": "Referenced Standard",
-        "equation": "Equation"
+        "equation": "Equation",
+        "promulgator": "Promulgator"
     }
 }

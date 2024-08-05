@@ -150,7 +150,7 @@ class Test_Add_Project_Page(Test_Base):
         )
         time.sleep(4)
         self.addproject_page.click_on_button(ADD_PROJECT)
-        current_date = datetime.datetime.now().strftime("%B %e, %Y %H:%M")
+        current_date = datetime.datetime.now().strftime("%B%e, %Y %H:%M")
         time.sleep(2)
         self.dashboardpage.enter_text_title_textbox(
             "2021 International Mechanical Code first printing"
