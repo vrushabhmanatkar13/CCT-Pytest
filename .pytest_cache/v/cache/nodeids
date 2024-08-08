@@ -162,6 +162,7 @@
   "test_cases/test_referenced_standards_overview_page.py::Test_Referenced_Standards_Overview::test_verify_open_referenced_standards_chapter_content",
   "test_cases/test_referenced_standards_overview_page.py::Test_Referenced_Standards_Overview::test_verify_open_referenced_standards_chapter_status",
   "test_cases/test_referenced_standards_overview_page.py::Test_Referenced_Standards_Overview::test_verify_open_referenced_standards_content",
+  "test_cases/test_referenced_standards_overview_page.py::Test_Referenced_Standards_Overview::test_verify_remove_section_referencing_standard",
   "test_cases/test_view_project_page.py::Test_View_Project_Page::test_verify_Fm_chapter_names",
   "test_cases/test_view_project_page.py::Test_View_Project_Page::test_verify_change_sequence_of_Fm_chapter",
   "test_cases/test_view_project_page.py::Test_View_Project_Page::test_verify_chapter_status",

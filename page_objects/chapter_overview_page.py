@@ -27,8 +27,8 @@ class Chapter_Overview_page:
         "//div[contains(@class,'itemHeight')]/div[@class='v-list-item__content']",
     )
     __sub_section_name_toc = (
-        By.XPATH,
-        "//div[@role='group']//div[@class='v-list-item__content']",
+        By.CSS_SELECTOR,
+        "div.v-list-group--open>div.v-list-group__items>div>div.v-list-item__content",
     )
 
     # indicator
@@ -113,7 +113,7 @@ class Chapter_Overview_page:
         "//input[@type='file']",
     )
     __uploaded_fig = (By.XPATH, "//img[@class='v-img__img v-img__img--cover']")
-    __fig_name = (By.XPATH, "//div[@class='v-chip__content']")
+    __fig_name = (By.XPATH, "//div[@class='text-subtitle-1']")
 
     # conformation Alert (Are you sure?)
     __alert_buttons = (By.XPATH, "//div[@class='swal2-actions']/button")
@@ -150,7 +150,7 @@ class Chapter_Overview_page:
             self.baseclass.click(textbox)
             self.baseclass.send_keys(textbox, final_text)
             # self.baseclass.send_keys(textbox, pyperclip.paste())
-        time.sleep(1.0)
+        time.sleep(0.5)
         self.baseclass.click(textbox)
         self.action.send_keys(Keys.PAGE_DOWN).send_keys(" " + content_text).perform()
 
@@ -192,7 +192,7 @@ class Chapter_Overview_page:
     def select_section_label(self, label_text):
         element = (By.XPATH, self.__get_text_textboxs.format(text="Section Label"))
         self.baseclass.click(element)
-        time.sleep(1.0)
+        time.sleep(0.5)
         options = self.baseclass.wait_until_elements(self.__label_options)
         self.action.move_to_element(options[0]).perform()
         for i in options:
@@ -250,7 +250,7 @@ class Chapter_Overview_page:
         self.baseclass.wait_loadder_dissappried()
         for i in self.baseclass.wait_until_elements(self.__section_name_toc):
             if section_name in i.text:
-                self.baseclass.click(i)
+                self.baseclass.click_javascript_executor_element(i)
                 break
         else:
             raise Exception(f"{section_name} is not present on toc")
@@ -267,11 +267,20 @@ class Chapter_Overview_page:
     @allure.step("Click on sub {sub_section_name} from TOC")
     def click_on_sub_section_on_toc(self, sub_section_name):
         for i in self.baseclass.wait_until_elements(self.__sub_section_name_toc):
-            if sub_section_name in i.text:
+
+            if sub_section_name in self.baseclass.get_text_javascript_executor_element(
+                i
+            ):
                 self.baseclass.click_javascript_executor_element(i)
                 break
         else:
-            raise Exception(f"{sub_section_name} is not present on toc")
+            for i in self.baseclass.wait_until_elements(self.__sub_section_name_toc):
+
+                if sub_section_name in i.text:
+                    self.baseclass.click_javascript_executor_element(i)
+                    break
+            else:
+                raise Exception(f"{sub_section_name} is not present on toc")
 
     def get_sub_section_number(self, sub_section_name):
         number = None
@@ -384,6 +393,10 @@ class Chapter_Overview_page:
 
     @allure.step("Get Section indicator")
     def get_section_indicator(self, section_name):
+        """To Get Section Indicator Status
+        :param section_name: Section Name
+        :return: Green or Red
+        """
         self.baseclass.wait_loadder_dissappried()
         section = self.baseclass.wait_until_elements(self.__section_name_toc)
         att_value = ""
@@ -402,15 +415,29 @@ class Chapter_Overview_page:
 
     @allure.step("Get Sub-Section indicator")
     def get_sub_section_indicator(self, subsection_name):
+        """To Get Sub-Section Indicator Status
+        :param subsection_name: Sub-Section Name
+        :return: Green or Red
+        """
         self.baseclass.wait_loadder_dissappried()
         sub_section = self.baseclass.wait_until_elements(self.__sub_section_name_toc)
         att_value = ""
         for i in sub_section:
-            if subsection_name in i.text:
+            if subsection_name in self.baseclass.get_text_javascript_executor_element(
+                i
+            ):
                 att_value = self.baseclass.wait_until_elements(
                     self.__sub_section_green_indicator
                 )[sub_section.index(i)].get_attribute("class")
                 break
+        else:
+            for i in sub_section:
+                if subsection_name in i.text:
+                    att_value = self.baseclass.wait_until_elements(
+                        self.__sub_section_green_indicator
+                    )[sub_section.index(i)].get_attribute("class")
+                    break
+
         if "greenlight text-greenlight" in att_value:
             return "Green"
         elif "in-progress text-in-progress" in att_value:
@@ -474,8 +501,8 @@ class Chapter_Overview_page:
     def upload_figure(self, file_path):
         element = self.baseclass.wait_until(self.__fig_upload)
         element.send_keys(os.path.abspath(file_path))
-        # image = self.baseclass.wait_until(self.__uploaded_fig)
-        # return image.is_displayed()
+        image = self.baseclass.wait_until(self.__uploaded_fig)
+        return image.is_displayed()
 
     @allure.step("Get uploaded fig name")
     def get_fig_file_name(self):

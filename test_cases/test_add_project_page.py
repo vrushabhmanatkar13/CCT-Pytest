@@ -137,7 +137,7 @@ class Test_Add_Project_Page(Test_Base):
             .replace("- " + book, "")
             .strip()
         )
-        time.sleep(2)
+        time.sleep(0.5)
         number = str(random.randint(2011, 2024))
         char = random.choice(string.ascii_uppercase)
         self.addproject_page.fill_add_project_form(
@@ -148,10 +148,10 @@ class Test_Add_Project_Page(Test_Base):
             "First Printing",
             "Test Books",
         )
-        time.sleep(4)
+        time.sleep(2.0)
         self.addproject_page.click_on_button(ADD_PROJECT)
         current_date = datetime.datetime.now().strftime("%B%e, %Y %H:%M")
-        time.sleep(2)
+        time.sleep(1.0)
         self.dashboardpage.enter_text_title_textbox(
             "2021 International Mechanical Code first printing"
         )
