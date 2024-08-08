@@ -15,5 +15,3 @@ class External_Link_Management:
         text = self.baseclass.get_text(self.__page_title)
         with allure.step(text):
             return text
-
-    

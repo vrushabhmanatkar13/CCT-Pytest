@@ -87,7 +87,7 @@ class Test_View_Project_Page(Test_Base):
         dashboard_version = self.dashboardpage.get_chapter_version_count()
         dashboard_clickable = self.dashboardpage.get_button_clickable(CHAPTER_VERSION)
         self.dashboardpage.click_dashboard_button(VIEW_PROJECT)
-        time.sleep(4)
+        time.sleep(3)
         viewpage_version = self.viewprojectpage.get_chapter_version_count()
         viewpage_clickable = self.viewprojectpage.get_book_management_button_clickable(
             SHOW_CHAP_VERSION
@@ -116,7 +116,7 @@ class Test_View_Project_Page(Test_Base):
 
         status_1 = self.viewprojectpage.get_chapter_status(chapter_name)
         self.viewprojectpage.click_on_chapter(chapter_name)
-        time.sleep(2)
+        time.sleep(1.0)
         breadcum = self.viewprojectpage.get_current_breadcum()
         status_2 = self.chap_overview.get_chapter_status()
         Baseclass.assert_equals(status_1, status_2)
@@ -148,7 +148,7 @@ class Test_View_Project_Page(Test_Base):
         self.dashboardpage.click_dashboard_button(VIEW_PROJECT)
         self.viewprojectpage.get_project_heading_name()
         self.viewprojectpage.click_sort_order_button()
-        time.sleep(2)
+        time.sleep(1.0)
         self.viewprojectpage.drag_drop_fm_chapter("COPYRIGHT", "PREFACE")
         fm_chap_popup = self.viewprojectpage.get_fm_chapter_name_on_sortorder()
         self.viewprojectpage.click_button_on_sort_order(SAVE_ORDER)

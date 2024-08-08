@@ -90,7 +90,7 @@ class Dashboard_Page:
 
     @allure.step("Get Selected Category")
     def get_selected_category(self):
-        time.sleep(2)
+        time.sleep(0.5)
         text = self.baseclass.get_text_javascript_executor(self.selected_category)
         with allure.step(text):
             return text

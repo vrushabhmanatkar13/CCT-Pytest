@@ -36,7 +36,7 @@ class Defination_Management:
 
     @allure.step("Search Deination - {defination_name}")
     def search_defination(self, defination_name):
-        time.sleep(3)
+        time.sleep(1.0)
         for i in self.baseclass.wait_until_elements(self.__definations):
             if defination_name in i.text:
                 pass

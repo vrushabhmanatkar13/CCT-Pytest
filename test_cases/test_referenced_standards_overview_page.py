@@ -10,6 +10,7 @@ from test_cases.test_chapter_overview_page import (
     NEW_CODE_ELEMENT,
     OPEN_CHAPTER,
     SAVE_DRAFT,
+    SAVE_FINAL,
     VALID_ORDINAL,
     VALIDATE_LOCATION,
 )
@@ -65,7 +66,7 @@ class Test_Referenced_Standards_Overview(Test_Base):
         self.chap_overview.enter_text_in_textbox(CHAPTER_TITLE, " UPDATE")
         edited_text = self.chap_overview.get_edit_heading_text()
         self.chap_overview.click_edit_page_button(CANCEL)
-        time.sleep(1.0)
+        time.sleep(0.5)
         self.chap_overview.click_on_alert_button(YES_PROCEED)
         heading = self.chap_overview.get_chapter_heading()
         Baseclass.assert_equals(act_chap_name, heading)
@@ -182,10 +183,18 @@ class Test_Referenced_Standards_Overview(Test_Base):
         lablel = self.ref_standards.get_section_lable()
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
         draft_msg = self.viewprojectpage.get_alert_message()
-
+        draft_indicator = self.chap_overview.get_section_indicator("TEST")
+        # Get Ref standard Information
         ref_number = self.ref_standards.get_reference_standard_info("number", 0)
         ref_title = self.ref_standards.get_reference_standard_info("title", 0)
         ref_sections = self.ref_standards.get_referenced_standard_sections(ref_title)
+        # Save Final
+        self.chap_overview.click_on_active_content()
+        self.chap_overview.enter_text_in_textbox("Title", " Final")
+        self.chap_overview.click_edit_page_button(SAVE_FINAL)
+        final_msg = self.viewprojectpage.get_alert_message()
+        final_indicator = self.chap_overview.get_section_indicator("TEST")
+        final_ref_title = self.ref_standards.get_reference_standard_info("title", 0)
 
         Baseclass.assert_equals("1", count)
         assert "301.1" in lablel
@@ -193,3 +202,31 @@ class Test_Referenced_Standards_Overview(Test_Base):
         Baseclass.assert_equals("TEST-2024", ref_number)
         Baseclass.assert_equals("Automation Test standards", ref_title)
         Baseclass.assert_equals(lablel, ref_sections)
+        Baseclass.assert_equals("Red", draft_indicator)
+        Baseclass.assert_equals(SUCCESS, final_msg)
+        Baseclass.assert_equals(ref_title + " Final", final_ref_title)
+        Baseclass.assert_equals("Green", final_indicator)
+
+    @allure.feature("Referenced Standard")
+    @allure.title("Verify Remove Section Referencing Standard")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @pytest.mark.dependency(
+        depends=["test_verify_add_referenced_standard"], scope="class"
+    )
+    def test_verify_remove_section_referencing_standard(self):
+        self.dashboardpage.click_project_name("2021 International Mechanical Code")
+        self.dashboardpage.click_dashboard_button(VIEW_PROJECT)
+        self.viewprojectpage.click_on_chapter("CHAPTER 15 REFERENCED STANDARDS")
+        self.chap_overview.click_on_button(OPEN_CHAPTER)
+        time.sleep(0.5)
+        self.chap_overview.click_on_section_on_toc("TEST")
+        ref_title = self.ref_standards.get_reference_standard_info("title", 0)
+        self.chap_overview.click_on_active_content()
+        lablel = self.ref_standards.get_section_lable()[0]
+        self.ref_standards.click_close_section_lable(lablel)
+        self.chap_overview.click_edit_page_button(SAVE_FINAL)
+        final_msg = self.viewprojectpage.get_alert_message()
+        ref_sections = self.ref_standards.get_referenced_standard_sections(ref_title)
+
+        Baseclass.assert_true(len(ref_sections) == 0)
+        Baseclass.assert_equals(SUCCESS, final_msg)

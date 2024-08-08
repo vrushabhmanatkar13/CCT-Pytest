@@ -1,7 +1,6 @@
 import datetime
 import os
 import platform
-
 from filelock import FileLock
 import pytest
 
@@ -84,14 +83,12 @@ def pytest_html_results_summary(prefix, summary, postfix):
     prefix.extend([f"Reporter : {_reporator}"])
 
 
-@pytest.hookimpl(hookwrapper=True)
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
     report: pytest.TestReport = outcome.get_result()
-
     extra = getattr(report, "extra", [])
     if report.when == "call":
-
         xfail = hasattr(report, "wasxfail")
         if report.failed or xfail:
             os.makedirs(_screnshot_dir, exist_ok=True)
@@ -139,7 +136,7 @@ def launch_browser(request):
         if browser.lower() == "chrome":
             driver = chrome_options(request, zoom_level, window_size)
         elif browser.lower() == "firefox":
-            driver = firefox_options(request, zoom_level)
+            driver = firefox_options(request, zoom_level, window_size)
 
         else:
             raise Exception("Browser is not selected")
@@ -190,7 +187,7 @@ def chrome_options(request, zoom_level, window_size) -> WebDriver:
     return driver
 
 
-def firefox_options(request, zoom_level) -> WebDriver:
+def firefox_options(request, zoom_level, window_size) -> WebDriver:
     """
     This funcation for set firefox desire capabilites.
     :param zoom_level: window zoom level
@@ -203,4 +200,5 @@ def firefox_options(request, zoom_level) -> WebDriver:
     if headless:
         options.add_argument("-headless")
     driver = webdriver.Firefox(service=Service(), options=options)
+    driver.set_window_size(window_size)
     return driver

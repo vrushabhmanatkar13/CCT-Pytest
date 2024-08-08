@@ -40,7 +40,7 @@ class Referenced_Standards_Overview_Page:
         By.XPATH,
         "//p[contains(text(),'Sections Referencing Standard')]/parent::div//input",
     )
-    __section_lable = (By.XPATH, "//div[@class='v-chip__content']/span")
+    __section_lable = (By.XPATH, "//div[@class='v-chip__content']")
 
     @allure.step("Get Ref Chapter content")
     def get_ref_chapter_content_text(self):
@@ -97,13 +97,13 @@ class Referenced_Standards_Overview_Page:
 
     @allure.step("Get Referenced Standard Sections")
     def get_referenced_standard_sections(self, title):
-        sections = None
+        sections = []
         for i in self.baseclass.wait_until_elements(self.__referenced_standards_info):
             if title in i.text:
                 sections = [j.text for j in i.find_elements(By.TAG_NAME, "a")]
                 break
-        else:
-            raise Exception(f"{title} sections are not showing")
+        # else:
+        #     raise Exception(f"{title} sections are not showing")
         return sections
 
     @allure.step("Get Referenced Standard Count Bedge")
@@ -125,3 +125,12 @@ class Referenced_Standards_Overview_Page:
         ]
         with allure.step(label):
             return label
+
+    @allure.step("Click on close section label")
+    def click_close_section_lable(self, section_label):
+        for i in self.baseclass.wait_until_elements(self.__section_lable):
+            if i.text == section_label:
+                i.find_element(By.TAG_NAME, "i").click()
+                break
+        else:
+            raise Exception(f"{section_label} is not present in Reference standard")
