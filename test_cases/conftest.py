@@ -81,6 +81,7 @@ def pytest_html_report_title(report):
 def pytest_html_results_summary(prefix, summary, postfix):
     prefix.extend([f"Project Name : {_project_name}"])
     prefix.extend([f"Reporter : {_reporator}"])
+    summary.append(extras.url(url))
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

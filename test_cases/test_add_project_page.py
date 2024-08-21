@@ -42,6 +42,7 @@ class Test_Add_Project_Page(Test_Base):
     @allure.severity(allure.severity_level.NORMAL)
     def test_cancel_to_add_project(self):
         self.dashboardpage.click_add_project()
+        time.sleep(1.0)
         self.addproject_page.click_on_button(CANCEL)
         text = self.dashboardpage.get_dashboard_page_text()
         Baseclass.assert_equals("Projects", text)
@@ -138,7 +139,7 @@ class Test_Add_Project_Page(Test_Base):
             .strip()
         )
         time.sleep(0.5)
-        number = str(random.randint(2011, 2024))
+        number = str(random.randint(2010, 2024))
         char = random.choice(string.ascii_uppercase)
         self.addproject_page.fill_add_project_form(
             "IMC" + char + number,
@@ -148,9 +149,9 @@ class Test_Add_Project_Page(Test_Base):
             "First Printing",
             "Test Books",
         )
-        time.sleep(2.0)
+        time.sleep(3.0)
         self.addproject_page.click_on_button(ADD_PROJECT)
-        current_date = datetime.datetime.now().strftime("%B%e, %Y %H:%M")
+        current_date = datetime.datetime.now().strftime("%B %e, %Y %H:%M")
         time.sleep(1.0)
         self.dashboardpage.enter_text_title_textbox(
             "2021 International Mechanical Code first printing"

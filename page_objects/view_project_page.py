@@ -118,7 +118,8 @@ class View_Project_Page:
     def click_on_chapter(self, chapter_name):
         chapters = self.baseclass.wait_until_elements(self.__chapter)
         for i in chapters:
-            if chapter_name in self.baseclass.get_text_javascript_executor_element(i):
+            self.action.scroll_to_element(i).perform()
+            if chapter_name in i.text:
                 self.baseclass.click_javascript_executor_element(i)
                 break
         else:
@@ -128,6 +129,7 @@ class View_Project_Page:
     def get_last_cahpter_number(self):
         chapters = []
         for i in self.baseclass.wait_until_elements(self.__chapter):
+            self.action.scroll_to_element(i).perform()
             text = self.baseclass.get_text_javascript_executor_element(i)
             if "CHAPTER" in text:
                 chapters.append(i)

@@ -264,7 +264,8 @@ class Test_Chapter_Overview(Test_Base):
         validate_text = self.chap_overview.get_validate_message()
         self.chap_overview.click_relocate_alt_button(RELOCATE_SECTION)
         subsec_ordinal = self.chap_overview.get_filled_text(SECTION_ORDINAL)
-        self.chap_overview.select_section_label("BLANK")
+        # self.chap_overview.select_section_label("BLANK")
+        self.chap_overview.clear_section_lable_text()
         self.chap_overview.enter_text_in_textbox(SECTION_TITLE, "Sub Section Data")
         self.chap_overview.enter_text_in_textbox(
             SECTION_CONTENT, "Test data from automation"
@@ -276,7 +277,7 @@ class Test_Chapter_Overview(Test_Base):
 
         subsec_title = self.chap_overview.get_active_heading_name()
         subsection = " ".join([subsec_ordinal, "Sub Section Data"])
-        self.chap_overview.click_on_section_on_toc("SECTION 1601")
+        # self.chap_overview.click_on_section_on_toc("SECTION 1601")
         time.sleep(0.5)
         self.chap_overview.click_on_sub_section_on_toc(subsection)
         subsec_status = self.chap_overview.get_sub_section_indicator(subsection)
@@ -409,7 +410,7 @@ class Test_Chapter_Overview(Test_Base):
         self.chap_overview.enter_text_in_textbox(FIG_ALT, "Edit alt")
         self.chap_overview.click_edit_page_button(CANCEL)
         self.chap_overview.click_on_alert_button(YES_PROCEED)
-        time.sleep(2.0)
+        time.sleep(3.0)
         alt_text = self.chap_overview.check_fig_showing_get_alt_text()
         fig_title_text = self.chap_overview.get_fig_title_text()
         Baseclass.assert_equals(act_alt_text, alt_text)

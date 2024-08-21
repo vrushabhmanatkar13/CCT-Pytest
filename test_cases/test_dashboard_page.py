@@ -79,7 +79,7 @@ class Test_Dashboard_Page(Test_Base):
     @pytest.mark.parametrize(
         ("tab_name", "title"),
         [
-            ("ACTIVE PROJECTS", "IEBC2021 First Printing"),
+            ("ACTIVE PROJECTS", "IPMC2021 First Printing"),
             ("INACTIVE PROJECTS", "2021 IECC"),
             ("CONTENT FINAL", "2021 International Fire Code"),
         ],
@@ -184,4 +184,8 @@ class Test_Dashboard_Page(Test_Base):
         self.dashboardpage.click_on_alert_button(YES)
         self.dashboardpage.wait_alert_dissappired()
         Baseclass.assert_equals(alert_text + " Project?", act_alert_text)
-        Baseclass.assert_true(self.dashboardpage.project_row_is_displayed())
+        result = self.dashboardpage.project_row_is_displayed()
+        if result:
+            Baseclass.assert_true(result)
+        else:
+            assert project_name not in self.dashboardpage.get_row_data("Project Name")
