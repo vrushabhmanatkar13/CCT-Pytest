@@ -19,6 +19,7 @@ class Appendix_Overview_Page:
     def get_last_appendix_ordinal(self):
         ordinal = ""
         for i in self.baseclass.wait_until_elements(self.__chapter):
+            self.action.scroll_to_element(i).perform()
             text = self.baseclass.get_text_javascript_executor_element(i)
             if "APPENDIX" in text:
                 ordinal = i.find_element(By.CSS_SELECTOR, "span>span:nth-child(2)").text

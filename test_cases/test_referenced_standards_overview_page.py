@@ -33,7 +33,6 @@ PROMU_POSTAL_CODE = conftest.json_obj["Content Edit"]["promulgator_postal_code"]
 @pytest.mark.Referenced_Standards
 @pytest.mark.order(index=7)
 @allure.epic("Referenced_Standards")
-@allure.tag("Referenced_Standards page")
 class Test_Referenced_Standards_Overview(Test_Base):
 
     @allure.feature("Referenced_Standards")
@@ -90,7 +89,7 @@ class Test_Referenced_Standards_Overview(Test_Base):
         prom_name_2 = self.ref_standards.get_promulgator_info("name")
         Baseclass.assert_equals(prom_name, prom_name_2)
 
-    @allure.feature("Referenced Standard")
+    @allure.feature("Referenced Standards")
     @allure.title("Verify Cancel Edited Referenced Standard")
     @allure.severity(allure.severity_level.CRITICAL)
     def test_verify_cancel_edit_referenced_standard(self):
@@ -161,7 +160,7 @@ class Test_Referenced_Standards_Overview(Test_Base):
         Baseclass.assert_equals("IL", promu_state)
         Baseclass.assert_equals("60478", promu_postal_code)
 
-    @allure.feature("Referenced Standard")
+    @allure.feature("Referenced Standards")
     @allure.title("Verify Add Referenced Standard")
     @allure.severity(allure.severity_level.CRITICAL)
     @pytest.mark.dependency(depends=["test_verify_add_promulgator"], scope="class")
@@ -184,6 +183,7 @@ class Test_Referenced_Standards_Overview(Test_Base):
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
         draft_msg = self.viewprojectpage.get_alert_message()
         draft_indicator = self.chap_overview.get_section_indicator("TEST")
+
         # Get Ref standard Information
         ref_number = self.ref_standards.get_reference_standard_info("number", 0)
         ref_title = self.ref_standards.get_reference_standard_info("title", 0)
@@ -207,7 +207,7 @@ class Test_Referenced_Standards_Overview(Test_Base):
         Baseclass.assert_equals(ref_title + " Final", final_ref_title)
         Baseclass.assert_equals("Green", final_indicator)
 
-    @allure.feature("Referenced Standard")
+    @allure.feature("Referenced Standards")
     @allure.title("Verify Remove Section Referencing Standard")
     @allure.severity(allure.severity_level.CRITICAL)
     @pytest.mark.dependency(

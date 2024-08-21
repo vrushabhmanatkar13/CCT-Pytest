@@ -258,7 +258,8 @@ class Test_Appendix_Overview(Test_Base):
         validate_text = self.chap_overview.get_validate_message()
         self.chap_overview.click_relocate_alt_button(RELOCATE_SECTION)
         subsec_ordinal = self.chap_overview.get_filled_text(SECTION_ORDINAL)
-        self.chap_overview.select_section_label("BLANK")
+        # self.chap_overview.select_section_label("BLANK")
+        self.chap_overview.clear_section_lable_text()
         self.chap_overview.enter_text_in_textbox(
             SECTION_TITLE, "Automation sub section"
         )
@@ -272,7 +273,7 @@ class Test_Appendix_Overview(Test_Base):
 
         subsec_title = self.chap_overview.get_active_heading_name()
         subsection = " ".join([subsec_ordinal, "Automation sub section"])
-        self.chap_overview.click_on_section_on_toc("AUTOMATION SECTION")
+        # self.chap_overview.click_on_section_on_toc("AUTOMATION SECTION")
         self.chap_overview.click_on_sub_section_on_toc(subsection)
         subsec_status = self.chap_overview.get_sub_section_indicator(subsection)
         self.chap_overview.click_on_active_content()

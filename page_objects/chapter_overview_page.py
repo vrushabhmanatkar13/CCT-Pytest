@@ -188,19 +188,25 @@ class Chapter_Overview_page:
         with allure.step(text):
             return text
 
-    @allure.step("Select Section label- {label_text}")
-    def select_section_label(self, label_text):
-        element = (By.XPATH, self.__get_text_textboxs.format(text="Section Label"))
-        self.baseclass.click(element)
-        time.sleep(0.5)
-        options = self.baseclass.wait_until_elements(self.__label_options)
-        self.action.move_to_element(options[0]).perform()
-        for i in options:
-            if i.text == label_text:
-                self.action.move_to_element(i).click().perform()
-                break
-        else:
-            raise Exception(f"{label_text} is not present in Section Label")
+    # @allure.step("Select Section label- {label_text}")
+    # def select_section_label(self, label_text):
+    #     element = (By.XPATH, self.__get_text_textboxs.format(text="Section Label"))
+    #     self.baseclass.click(element)
+    #     time.sleep(0.5)
+    #     options = self.baseclass.wait_until_elements(self.__label_options)
+    #     self.action.move_to_element(options[0]).perform()
+    #     for i in options:
+    #         if i.text == label_text:
+    #             self.action.move_to_element(i).click().perform()
+    #             break
+    #     else:
+    #         raise Exception(f"{label_text} is not present in Section Label")
+
+    @allure.step("Clear Lable Text field")
+    def clear_section_lable_text(self):
+        locator = (By.XPATH, self.__get_text_textboxs.format(text="Label"))
+        element = self.baseclass.wait_until(locator).find_element(By.TAG_NAME, "p")
+        element.clear()
 
     @allure.step("Click on {button_text}")
     def click_edit_page_button(self, button_text):

@@ -112,6 +112,7 @@
   "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[ACTIVE PROJECTS-2021 IBC]",
   "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[ACTIVE PROJECTS-IEBC2021 First Printing]",
   "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[ACTIVE PROJECTS-IPC2021 First Printing]",
+  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[ACTIVE PROJECTS-IPMC2021 First Printing]",
   "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[ACTIVE PROJECTS-title0]",
   "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[CONTENT FINAL-2021 IFGC]",
   "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[CONTENT FINAL-2021 International Fire Code]",

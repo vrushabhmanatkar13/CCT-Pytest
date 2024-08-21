@@ -90,8 +90,8 @@ class Referenced_Standards_Overview_Page:
             if field in i.get_attribute("class"):
                 text = i.text
                 break
-        else:
-            raise Exception(f"{field} is not showing")
+            else:
+                raise Exception(f"{field} is not showing")
         with allure.step(text):
             return text
 
@@ -123,7 +123,7 @@ class Referenced_Standards_Overview_Page:
         label = [
             i.text for i in self.baseclass.wait_until_elements(self.__section_lable)
         ]
-        with allure.step(label):
+        with allure.step(str(label)):
             return label
 
     @allure.step("Click on close section label")
