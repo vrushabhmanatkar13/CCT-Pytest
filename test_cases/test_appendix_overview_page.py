@@ -1,18 +1,21 @@
 import time
 import pytest
 import allure
-
-from test_cases import conftest
-from test_cases.test_base import SUCCESS, YES_PROCEED, Test_Base
-from test_cases.test_chapter_overview_page import (
+from test_cases.test_base import Test_Base
+from Test_Data.variables import (
+    APPENDIX_CONTENT,
+    APPENDIX_ORDINAL,
+    APPENDIX_TITLE,
     CANCEL,
     FIG_ALT,
     FIG_NOTE_ABOVE,
     FIG_NOTE_BELOW,
     FIG_TITLE,
     FIGURE,
+    NEW_APPENDIX,
     NEW_CODE_ELEMENT,
     OPEN_CHAPTER,
+    RELOCATE_APPENDIX,
     RELOCATE_FIG,
     RELOCATE_SECTION,
     SAVE_DRAFT,
@@ -21,23 +24,17 @@ from test_cases.test_chapter_overview_page import (
     SECTION_CONTENT,
     SECTION_ORDINAL,
     SECTION_TITLE,
+    SET_APPENDIX_ORDINAL,
     SET_SECTION_ORDINAL,
     VALID_ORDINAL,
     VALIDATE_LOCATION,
+    SUCCESS,
+    YES_PROCEED,
+    DELETE,
+    VIEW_PROJECT,
 )
-from test_cases.test_dashboard_page import DELETE
-from test_cases.test_view_project_page import VIEW_PROJECT
+
 from uitility.baseclass import Baseclass
-
-APPENDIX_TITLE = conftest.json_obj["Content Edit"]["appendix_title"]
-APPENDIX_CONTENT = conftest.json_obj["Content Edit"]["appendix_content"]
-APPENDIX_DELETE = conftest.json_obj["Content Edit"]["delete_appendix"]
-SET_APPENDIX_ORDINAL = conftest.json_obj["Content Edit"]["set_appendix_ordinal"]
-APPENDIX_ORDINAL = conftest.json_obj["Content Edit"]["appendix_ordinal"]
-
-RELOCATE_APPENDIX = conftest.json_obj["Relocate alert"]["relocate_appendix"]
-
-NEW_APPENDIX = conftest.json_obj["Footer_model"]["new_appendix"]
 
 
 @pytest.mark.Appendix
@@ -344,7 +341,7 @@ class Test_Appendix_Overview(Test_Base):
         self.chap_overview.enter_text_in_textbox(FIG_NOTE_BELOW, "Fig Below text")
         self.chap_overview.enter_text_in_textbox(FIG_TITLE, fig_title)
         self.chap_overview.enter_text_in_textbox(FIG_ALT, fig_alt_text)
-        result = self.chap_overview.upload_figure("Test Data/JPG_Valid.jpeg")
+        result = self.chap_overview.upload_figure("Test_Data/JPG_Valid.jpeg")
         fig_name = self.chap_overview.get_fig_file_name()
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
         draft_msg = self.viewprojectpage.get_alert_message()

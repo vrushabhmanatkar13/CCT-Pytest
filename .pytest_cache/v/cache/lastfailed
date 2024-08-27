@@ -91,22 +91,5 @@
   "test_cases/test_referenced_standards_overview_page.py::Test_Referenced_Standards_Overview::test_verify_open_Appendix_content": true,
   "test_cases/test_referenced_standards_overview_page.py::Test_Referenced_Standards_Overview::test_verify_remove_referencing_standard": true,
   "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[ACTIVE PROJECTS-IEBC2021 First Printing]": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_change_tabs[CONTENT FINAL-blueline]": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[ACTIVE PROJECTS-IPMC2021 First Printing]": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_remove_project[ACTIVE PROJECTS-Close]": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_select_category[INACTIVE PROJECTS]": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_select_category[CONTENT FINAL]": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_clear_category": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[INACTIVE PROJECTS-2021 IECC]": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[CONTENT FINAL-2021 International Fire Code]": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_project_details[ACTIVE PROJECTS]": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_project_details[CONTENT FINAL]": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_add_project_button": true,
-  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_remove_project[INACTIVE PROJECTS-Delete]": true,
-  "test_cases/test_chapter_overview_page.py::Test_Chapter_Overview::test_verify_add_figure_at_section[Section-Automation Section Figure-Fig Alt text]": true,
-  "test_cases/test_chapter_overview_page.py::Test_Chapter_Overview::test_verify_add_figure_at_section[Sub-Section-Automation Sub Section Figure-Fig Alt text sub section]": true,
-  "test_cases/test_fm_chapter_overview_page.py::Test_Fm_Chapter_Overview::test_verify_add_new_fm_figure": true,
-  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_add_figure_at_appendix[Section-Automation Appendix Section Figure-Fig Alt section]": true,
-  "test_cases/test_appendix_overview_page.py::Test_Appendix_Overview::test_verify_add_figure_at_appendix[Sub-Section-Automation Appendix Sub Section Figure-Fig Alt sub section]": true,
-  "test_cases/test_referenced_standards_overview_page.py::Test_Referenced_Standards_Overview::test_verify_add_referenced_standard": true
+  "test_cases/test_dashboard_page.py::Test_Dashboard_Page::test_search_text_title_textbox[ACTIVE PROJECTS-IPMC2021 First Printing]": true
 }

@@ -1,12 +1,10 @@
 # from test_base import Test_Base
 import pytest
-from test_cases import conftest
 from test_cases.test_base import Test_Base
 from uitility.baseclass import Baseclass
 import allure
 
-HOME_PAGE = conftest.json_obj["Page Titles"]["home_page"]
-RESET_PASSWORD_PAGE = conftest.json_obj["Page Titles"]["rest_password"]
+from Test_Data.variables import HOME_PAGE, RESET_PASSWORD_PAGE
 
 
 @pytest.mark.Login

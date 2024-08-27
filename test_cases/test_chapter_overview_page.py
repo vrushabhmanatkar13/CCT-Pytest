@@ -1,61 +1,43 @@
 import time
-from test_cases import conftest
-from test_cases.test_base import SUCCESS, YES_PROCEED, Test_Base
+
+from test_cases.test_base import Test_Base
 import pytest
 import allure
-from test_cases.test_dashboard_page import DELETE, VIEW_PROJECT
+from Test_Data.variables import (
+    CANCEL,
+    CHAPTER_CONTENT,
+    CHAPTER_ORDINAL,
+    CHAPTER_TITLE,
+    DELETE,
+    DELETE_CHAPTER,
+    DELETE_SECTION,
+    FIG_ALT,
+    FIG_NOTE_ABOVE,
+    FIG_NOTE_BELOW,
+    FIG_TITLE,
+    FIGURE,
+    NEW_CHAPTER,
+    NEW_CODE_ELEMENT,
+    OPEN_CHAPTER,
+    RELOCATE_CHAPTER,
+    RELOCATE_FIG,
+    RELOCATE_SECTION,
+    SAVE_DRAFT,
+    SAVE_FINAL,
+    SECTION,
+    SECTION_CONTENT,
+    SECTION_ORDINAL,
+    SECTION_TITLE,
+    SET_CHAP_ORDINAL,
+    SET_FIG_ORDINAL,
+    SET_SECTION_ORDINAL,
+    VALID_ORDINAL,
+    VALIDATE_LOCATION,
+    VIEW_PROJECT,
+    SUCCESS,
+    YES_PROCEED,
+)
 from uitility.baseclass import Baseclass
-
-OPEN_CHAPTER = conftest.json_obj["Chapter View"]["open_chapter"]
-VALIDATE_LINKS = conftest.json_obj["Chapter View"]["validate_links"]
-READY_REL_PUBS = conftest.json_obj["Chapter View"]["ready_rel_pubs"]
-RETURN_TO_PUBS = conftest.json_obj["Chapter View"]["return_to_pubs"]
-COMPLETE = conftest.json_obj["Chapter View"]["complete"]
-CDP_ACCESS_SYN = conftest.json_obj["Chapter View"]["cdp_access_syn"]
-NOTES = conftest.json_obj["Chapter View"]["notes"]
-
-
-SET_CHAP_ORDINAL = conftest.json_obj["Content Edit"]["set_chap_ordinal"]
-SET_SECTION_ORDINAL = conftest.json_obj["Content Edit"]["set_section_ordinal"]
-
-SAVE_DRAFT = conftest.json_obj["Content Edit"]["save_draft"]
-SAVE_FINAL = conftest.json_obj["Content Edit"]["save_final"]
-DELETE_CHAPTER = conftest.json_obj["Content Edit"]["delete_chapter"]
-DELETE_SECTION = conftest.json_obj["Content Edit"]["delete_section"]
-
-CANCEL = conftest.json_obj["Content Edit"]["cancel"]
-TITLE = conftest.json_obj["Content Edit"]["title"]
-CONTENT = conftest.json_obj["Content Edit"]["content"]
-
-CHAPTER_LABEL = conftest.json_obj["Content Edit"]["chapter_label"]
-CHAPTER_ORDINAL = conftest.json_obj["Content Edit"]["chapter_ordinal"]
-CHAPTER_TITLE = conftest.json_obj["Content Edit"]["chapter_title"]
-CHAPTER_CONTENT = conftest.json_obj["Content Edit"]["chapter_content"]
-
-SECTION_ORDINAL = conftest.json_obj["Content Edit"]["section_ordinal"]
-SECTION_TITLE = conftest.json_obj["Content Edit"]["section_title"]
-SECTION_CONTENT = conftest.json_obj["Content Edit"]["section_content"]
-
-SET_FIG_ORDINAL = conftest.json_obj["Content Edit"]["set_fig_ordinal"]
-FIG_TITLE = conftest.json_obj["Content Edit"]["fig_title"]
-FIG_NOTE_ABOVE = conftest.json_obj["Content Edit"]["fig_note_above"]
-FIG_NOTE_BELOW = conftest.json_obj["Content Edit"]["fig_note_below"]
-FIG_ALT = conftest.json_obj["Content Edit"]["fig_alt"]
-
-NEW_CHAPTER = conftest.json_obj["Footer_model"]["new_chapter"]
-NEW_CODE_ELEMENT = conftest.json_obj["Footer_model"]["new_code_element"]
-
-
-VALIDATE_LOCATION = conftest.json_obj["Relocate alert"]["validate_location"]
-RELOCATE_CHAPTER = conftest.json_obj["Relocate alert"]["relocate_chapter"]
-RELOCATE_SECTION = conftest.json_obj["Relocate alert"]["relocate_section"]
-RELOCATE_FIG = conftest.json_obj["Relocate alert"]["relocate_fig"]
-VALID_ORDINAL = conftest.json_obj["Relocate alert"]["valid_ordinal_msg"]
-
-
-SECTION = conftest.json_obj["New Code Element"]["section"]
-FIGURE = conftest.json_obj["New Code Element"]["figure"]
-TABLE = conftest.json_obj["New Code Element"]["table"]
 
 
 @pytest.mark.Chapter
@@ -348,7 +330,7 @@ class Test_Chapter_Overview(Test_Base):
         self.chap_overview.enter_text_in_textbox(FIG_NOTE_BELOW, "Fig Below text")
         self.chap_overview.enter_text_in_textbox(FIG_TITLE, fig_title)
         self.chap_overview.enter_text_in_textbox(FIG_ALT, fig_alt_text)
-        result = self.chap_overview.upload_figure("Test Data/JPG_Valid.jpeg")
+        result = self.chap_overview.upload_figure("Test_Data/JPG_Valid.jpeg")
         fig_name = self.chap_overview.get_fig_file_name()
         self.chap_overview.click_edit_page_button(SAVE_DRAFT)
         draft_msg = self.viewprojectpage.get_alert_message()

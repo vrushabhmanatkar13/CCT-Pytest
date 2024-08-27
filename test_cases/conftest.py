@@ -9,7 +9,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.webdriver import WebDriver
 from pytest_metadata.plugin import metadata_key
 from pytest_html import extras
-from uitility.read_config import get_josn_data, read_config
+from uitility.send_email import Setup_email
+from uitility.read_config import get_josn_data, get_testcase_count, read_config, count
 import allure
 
 # print(sys.path)
@@ -30,11 +31,15 @@ _title = _config.get("Project Details", "report_title")
 _project_name = _config.get("Project Details", "project_name")
 _reporator = _config.get("Project Details", "reporter")
 
+_sender = _config.get("email", "sender")
+_reciver = _config.get("email", "reciver")
+_password = _config.get("email", "password")
+
 _report_dir = os.path.join(os.getcwd(), "Report")
 _screnshot_dir = os.path.join(os.getcwd(), "Screenshot")
 _enviroment_dir = os.path.join(os.getcwd(), "allure-results", "environment.properties")
 
-json_obj = get_josn_data("./Test Data/buttons_text.json")
+json_obj = get_josn_data("./Test_Data/buttons_text.json")
 
 
 def pytest_addoption(parser):
@@ -44,6 +49,7 @@ def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome")
     parser.addoption("--clean-allure", action="store_true", default=False)
     parser.addoption("--env", action="store", default="dev")
+    parser.addoption("--send-email", action="store_true", default=False)
 
 
 def pytest_configure(config):
@@ -86,10 +92,13 @@ def pytest_html_results_summary(prefix, summary, postfix):
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
+
     outcome = yield
     report: pytest.TestReport = outcome.get_result()
+    get_testcase_count(item, call, report)
     extra = getattr(report, "extra", [])
     if report.when == "call":
+
         xfail = hasattr(report, "wasxfail")
         if report.failed or xfail:
             os.makedirs(_screnshot_dir, exist_ok=True)
@@ -104,6 +113,32 @@ def pytest_runtest_makereport(item, call):
                 driver.get_screenshot_as_png(), image, allure.attachment_type.PNG
             )
         report.extras = extra
+
+
+def pytest_sessionfinish(session, exitstatus):
+    testcase_count = []
+    all_count = f"\nTotal Test Cases : {len(session.items)}"
+    for marker, counts in count.items():
+        total = sum(counts.values())
+        testcase_count.append(
+            f"\n{marker}:Test Cases: {total}\n"
+            f"  - Passed: {counts['passed']}"
+            f"  - Failed: {counts['failed']}"
+            f"  - Skipped: {counts['skipped']}"
+            "\n"
+        )
+
+    testcase_count.append(all_count)
+    subject = f"Test Execution Summary - {_project_name} - {datetime.datetime.now().strftime('%B %d, %Y')}"
+    if session.config.getoption("--send-email"):
+        mail = Setup_email(
+            _sender,
+            _reciver,
+            subject,
+            "".join(testcase_count),
+        )
+        mail.setup_message()
+        mail.send_email(_password)
 
 
 @pytest.fixture(

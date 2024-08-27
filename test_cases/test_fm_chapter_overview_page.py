@@ -1,29 +1,31 @@
 import time
 import pytest
 import allure
-from test_cases import conftest
-from test_cases.test_base import SUCCESS, YES_PROCEED, Test_Base
-from test_cases.test_chapter_overview_page import (
+
+from test_cases.test_base import Test_Base
+from Test_Data.variables import (
     CANCEL,
     CONTENT,
     FIG_ALT,
     FIG_NOTE_ABOVE,
     FIG_NOTE_BELOW,
     FIGURE,
+    FM_CHAP_CONTENT,
+    FM_CHAP_TITLE,
     NEW_CODE_ELEMENT,
+    NEW_FM_CHAPTER,
     OPEN_CHAPTER,
     SAVE_DRAFT,
     SAVE_FINAL,
     SECTION,
     TITLE,
+    SUCCESS,
+    YES_PROCEED,
+    DELETE,
+    VIEW_PROJECT,
 )
-from test_cases.test_dashboard_page import DELETE
-from test_cases.test_view_project_page import VIEW_PROJECT
-from uitility.baseclass import Baseclass
 
-FM_CHAP_TITLE = conftest.json_obj["Content Edit"]["fm_chapter_title"]
-FM_CHAP_CONTENT = conftest.json_obj["Content Edit"]["fm_chapter_content"]
-NEW_FM_CHAPTER = conftest.json_obj["Footer_model"]["new_fm_chapter"]
+from uitility.baseclass import Baseclass
 
 
 @pytest.mark.Fm_Chapter
@@ -242,7 +244,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         time.sleep(0.5)
         self.header_footer.click_on_model_list(NEW_CODE_ELEMENT)
         self.header_footer.click_on_code_element_button(FIGURE)
-        result = self.chap_overview.upload_figure("Test Data/JPG_Valid.jpeg")
+        result = self.chap_overview.upload_figure("Test_Data/JPG_Valid.jpeg")
         fig_name = self.chap_overview.get_fig_file_name()  # feature changed
         self.chap_overview.enter_text_in_textbox(FIG_NOTE_ABOVE, "Fig Above text")
         self.chap_overview.enter_text_in_textbox(FIG_NOTE_BELOW, "Fig Below text")
@@ -296,7 +298,7 @@ class Test_Fm_Chapter_Overview(Test_Base):
         self.chap_overview.enter_text_in_textbox(FIG_ALT, "Edit alt")
         self.chap_overview.click_edit_page_button(CANCEL)
         self.chap_overview.click_on_alert_button(YES_PROCEED)
-        time.sleep(2.0)
+        time.sleep(3.0)
         alt_text = self.chap_overview.check_fig_showing_get_alt_text()
         fig_title = self.chap_overview.get_fig_title_text()
         Baseclass.assert_equals(act_alt_text, alt_text)

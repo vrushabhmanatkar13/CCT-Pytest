@@ -4,32 +4,30 @@ import string
 import time
 import allure
 import pytest
-from test_cases import conftest
+
+from page_objects.add_edit_project_page import SELECT_BASE_BOOK
 from test_cases.test_base import Test_Base
-from test_cases.test_dashboard_page import (
+from Test_Data.variables import (
+    BOOK,
+    BOOK_YEAR,
+    CANCEL,
+    CATEGORY,
+    CLEAR_FROM,
     CLOSE,
     DELETE,
+    GROUP,
+    PRINTING,
     PROJECT_NAME,
+    PROJECT_TYPE,
+    SELECT,
     TITLE,
+    VERSION_TYPE,
     VIEW_PROJECT,
     YES,
+    SUCCESS,
+    ADD_PROJECT,
 )
 from uitility.baseclass import Baseclass
-
-SELECT_BASE_BOOK = conftest.json_obj["Add Project"]["select_base_book"]
-ADD_PROJECT = conftest.json_obj["Add Project"]["add_project"]
-CANCEL = conftest.json_obj["Add Project"]["cancel"]
-CLEAR_FROM = conftest.json_obj["Add Project"]["clear_from"]
-SELECT = conftest.json_obj["Base Book"]["select"]
-
-GROUP = conftest.json_obj["Base Book"]["group"]
-BOOK_YEAR = conftest.json_obj["Base Book"]["book_year"]
-PRINTING = conftest.json_obj["Base Book"]["printing"]
-BOOK = conftest.json_obj["Base Book"]["book"]
-
-PROJECT_TYPE = conftest.json_obj["Add Project"]["project_type"]
-VERSION_TYPE = conftest.json_obj["Add Project"]["version_type"]
-CATEGORY = conftest.json_obj["Add Project"]["category"]
 
 
 @pytest.mark.Add_Project
@@ -147,12 +145,13 @@ class Test_Add_Project_Page(Test_Base):
             "2021 International Mechanical Code first printing",
             "Level 0 - 1st Printing",
             "First Printing",
-            "Test Books",
+            "2021 I-Codes",
         )
         time.sleep(3.0)
         self.addproject_page.click_on_button(ADD_PROJECT)
         current_date = datetime.datetime.now().strftime("%B %e, %Y %H:%M")
         time.sleep(1.0)
+
         self.dashboardpage.enter_text_title_textbox(
             "2021 International Mechanical Code first printing"
         )
@@ -164,7 +163,7 @@ class Test_Add_Project_Page(Test_Base):
             "2021 International Mechanical Code first printing",
             self.dashboardpage.get_first_title_name(),
         )
-        Baseclass.assert_equals("Test Books", self.dashboardpage.get_first_category())
+        Baseclass.assert_equals("2021 I-Codes", self.dashboardpage.get_first_category())
         Baseclass.assert_equals(base_book, self.dashboardpage.get_first_basebook_name())
         Baseclass.assert_equals(
             "Level 0 - 1st Printing", self.dashboardpage.get_first_project_type()

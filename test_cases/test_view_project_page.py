@@ -1,17 +1,17 @@
 import time
 import pytest
-from test_cases import conftest
-from test_cases.test_base import SUCCESS, Test_Base
+from test_cases.test_base import Test_Base
 from uitility.baseclass import Baseclass
 import allure
-
-VIEW_PROJECT = conftest.json_obj["Dashboard"]["view_project"]
-CHAPTER_VERSION = conftest.json_obj["Dashboard"]["chapter_version"]
-DEF_MANAGEMENT = conftest.json_obj["Project View"]["def_management"]
-EXT_LINK_MANAGEMENT = conftest.json_obj["Project View"]["ext_link_management"]
-LOAD_PROPOSALS = conftest.json_obj["Project View"]["load_proposals"]
-SHOW_CHAP_VERSION = conftest.json_obj["Project View"]["show_chap_version"]
-SAVE_ORDER = conftest.json_obj["Project View"]["save_order"]
+from Test_Data.variables import (
+    CHAPTER_VERSION,
+    DEF_MANAGEMENT,
+    EXT_LINK_MANAGEMENT,
+    SAVE_ORDER,
+    SHOW_CHAP_VERSION,
+    SUCCESS,
+    VIEW_PROJECT,
+)
 
 
 @pytest.mark.View_Project

@@ -6,5 +6,8 @@
     ],
     "files.exclude": {
         "**/.git": false
-    }
+    },
+    "python.analysis.extraPaths": [
+        "./Test Data"
+    ]
 }
