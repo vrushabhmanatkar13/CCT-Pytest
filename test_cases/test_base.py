@@ -8,17 +8,15 @@ from page_objects.defination_management_page import Defination_Management
 from page_objects.external_link_management_page import External_Link_Management
 from page_objects.header_footer import Header_Footer
 from page_objects.login_page import Login_Page
-from page_objects.referenced_standards_overview_page import Referenced_Standards_Overview_Page
+from page_objects.referenced_standards_overview_page import (
+    Referenced_Standards_Overview_Page,
+)
 from page_objects.view_project_page import View_Project_Page
 import test_cases.conftest as conftest
 from uitility.baseclass import Baseclass
 import allure
 
-HOME_PAGE = conftest.json_obj["Page Titles"]["home_page"]
-SUCCESS = conftest.json_obj["Alert"]["success"]
-ERROR = conftest.json_obj["Alert"]["error"]
-YES_PROCEED = conftest.json_obj["Alert"]["yes_proceed"]
-ALT_CANCEL = conftest.json_obj["Alert"]["cancel"]
+from Test_Data.variables import HOME_PAGE
 
 
 # @pytest.mark.usefixtures("test_base")

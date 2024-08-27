@@ -6,16 +6,17 @@ from test_cases.test_base import Test_Base
 from uitility.baseclass import Baseclass
 import allure
 
-VIEW_PROJECT = conftest.json_obj["Dashboard"]["view_project"]
-PROJECT_DETAILS = conftest.json_obj["Dashboard"]["project_details"]
-CHAPTER_VERSION = conftest.json_obj["Dashboard"]["chapter_version"]
-DELETE = conftest.json_obj["Dashboard"]["delete"]
-CLOSE = conftest.json_obj["Dashboard"]["close"]
-RE_OPEN = conftest.json_obj["Dashboard"]["re-open"]
-YES = conftest.json_obj["Dashboard"]["yes"]
-
-PROJECT_NAME = conftest.json_obj["Add Project"]["project_name"]
-TITLE = conftest.json_obj["Add Project"]["title"]
+from Test_Data.variables import (
+    CHAPTER_VERSION,
+    CLOSE,
+    DELETE,
+    PROJECT_DETAILS,
+    PROJECT_NAME,
+    RE_OPEN,
+    TITLE,
+    VIEW_PROJECT,
+    YES,
+)
 
 
 @pytest.mark.Dashboard
@@ -36,7 +37,7 @@ class Test_Dashboard_Page(Test_Base):
     def test_change_tabs(self, tab_name, url):
         project_name_1 = self.dashboardpage.get_first_project_name()
         self.dashboardpage.click_tabs(tab_name)
-        time.sleep(0.5)
+        time.sleep(1.0)
         project_name_2 = self.dashboardpage.get_first_project_name()
         current_url = self.driver.current_url
         Baseclass.assert_equals(conftest.url + "projects/" + url, current_url)
@@ -79,7 +80,7 @@ class Test_Dashboard_Page(Test_Base):
     @pytest.mark.parametrize(
         ("tab_name", "title"),
         [
-            ("ACTIVE PROJECTS", "IPMC2021 First Printing"),
+            ("ACTIVE PROJECTS", "2021 IPMC Gold Standard"),
             ("INACTIVE PROJECTS", "2021 IECC"),
             ("CONTENT FINAL", "2021 International Fire Code"),
         ],

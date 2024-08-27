@@ -1,10 +1,10 @@
 import time
 import pytest
 from test_cases import conftest
-from test_cases.test_base import SUCCESS, YES_PROCEED, Test_Base
+from test_cases.test_base import Test_Base
 import allure
 
-from test_cases.test_chapter_overview_page import (
+from Test_Data.variables import (
     CANCEL,
     CHAPTER_TITLE,
     NEW_CODE_ELEMENT,
@@ -13,8 +13,10 @@ from test_cases.test_chapter_overview_page import (
     SAVE_FINAL,
     VALID_ORDINAL,
     VALIDATE_LOCATION,
+    VIEW_PROJECT,
+    SUCCESS,
+    YES_PROCEED,
 )
-from test_cases.test_view_project_page import VIEW_PROJECT
 from uitility.baseclass import Baseclass
 
 PROMULGATOR = conftest.json_obj["New Code Element"]["promulgator"]

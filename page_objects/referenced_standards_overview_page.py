@@ -90,8 +90,8 @@ class Referenced_Standards_Overview_Page:
             if field in i.get_attribute("class"):
                 text = i.text
                 break
-            else:
-                raise Exception(f"{field} is not showing")
+        else:
+            raise Exception(f"{field} is not showing")
         with allure.step(text):
             return text
 
@@ -102,8 +102,8 @@ class Referenced_Standards_Overview_Page:
             if title in i.text:
                 sections = [j.text for j in i.find_elements(By.TAG_NAME, "a")]
                 break
-        # else:
-        #     raise Exception(f"{title} sections are not showing")
+        else:
+            raise Exception(f"{title} sections are not showing")
         return sections
 
     @allure.step("Get Referenced Standard Count Bedge")
