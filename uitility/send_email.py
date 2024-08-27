@@ -3,13 +3,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-sender = "vrushabhmanatkar13@gmail.com"
-reaciver = "vrushabh7.m@gmail.com"
-password = "ujjk qhyf mxfg yhav"
 
-infobeans = "vrushabh.manatkar@infobeans.com"
-infobeans_pass = "tfez ilgs yrgn gtkf"
-infobeans_rec = "jaya.sisodia@infobeans.com"
 
 
 class Setup_email:
