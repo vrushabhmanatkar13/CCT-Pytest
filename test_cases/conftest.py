@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from pytest_metadata.plugin import metadata_key
 from pytest_html import extras
 from uitility.send_email import Setup_email
-from uitility.read_config import get_josn_data, get_testcase_count, read_config, count
+from uitility.read_config import get_josn_data, read_config
 import allure
 
 # print(sys.path)
@@ -19,6 +19,8 @@ import allure
 # sys.path.remove('D:\\python program\\ICC-Shop\\test case')
 # updated_dir = os.path.join(parent_dir, 'test_case')``
 
+TEST_CASE_COUNT = {"passed": 0, "failed": 0, "skipped": 0}
+FAILED_TEST_CASES = []
 
 _config = read_config("./Confuguration/config.ini")
 zoom_level = _config.get("options", "level")
@@ -66,7 +68,6 @@ def pytest_configure(config):
     config.stash[metadata_key]["URL"] = url
 
     # Set Enviroment Variables for Allure Report
-
     env = read_config(_enviroment_dir)
     if _project_name not in env:
         env.add_section(_project_name)
@@ -84,10 +85,9 @@ def pytest_html_report_title(report):
     report.title = _title
 
 
-def pytest_html_results_summary(prefix, summary, postfix):
-    prefix.extend([f"Project Name : {_project_name}"])
-    prefix.extend([f"Reporter : {_reporator}"])
-    summary.append(extras.url(url))
+# def pytest_html_results_summary(prefix, summary, postfix):
+#     prefix.extend([f"Project Name : {_project_name}"])
+#     prefix.extend([f"Reporter : {_reporator}"])
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
@@ -116,26 +116,17 @@ def pytest_runtest_makereport(item, call):
 
 
 def pytest_sessionfinish(session, exitstatus):
-    testcase_count = []
-    all_count = f"\nTotal Test Cases : {len(session.items)}"
-    for marker, counts in count.items():
-        total = sum(counts.values())
-        testcase_count.append(
-            f"\n{marker}:Test Cases: {total}\n"
-            f"  - Passed: {counts['passed']}"
-            f"  - Failed: {counts['failed']}"
-            f"  - Skipped: {counts['skipped']}"
-            "\n"
-        )
+    all_count = f"Total Test Cases : {len(session.items)}"
+    testcases = "\n".join(FAILED_TEST_CASES)
+    body = f"\n{all_count}\n- Passed: {TEST_CASE_COUNT['passed']}\n- Failed: {TEST_CASE_COUNT['failed']}\n- Skipped: {TEST_CASE_COUNT['skipped']}\n Failed TestCases :\n{testcases}"
 
-    testcase_count.append(all_count)
     subject = f"Test Execution Summary - {_project_name} - {datetime.datetime.now().strftime('%B %d, %Y')}"
     if session.config.getoption("--send-email"):
         mail = Setup_email(
             _sender,
             _reciver,
             subject,
-            "".join(testcase_count),
+            body,
         )
         mail.setup_message()
         mail.send_email(_password)
@@ -199,6 +190,18 @@ def launch_browser(request):
 
 # def before_class():
 #     return launch_browser()
+
+
+def get_testcase_count(item, call, result):
+
+    if result.when == "call":
+        if result.failed:
+            TEST_CASE_COUNT["failed"] += 1
+            FAILED_TEST_CASES.append("::".join(item.nodeid.split("::")[-2:]))
+        elif result.skipped:
+            TEST_CASE_COUNT["skipped"] += 1
+        else:
+            TEST_CASE_COUNT["passed"] += 1
 
 
 def chrome_options(request, zoom_level, window_size) -> WebDriver:

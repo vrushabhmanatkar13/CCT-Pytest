@@ -17,19 +17,3 @@ def get_josn_data(json_file):
         return data
 
 
-count = {}
-
-
-def get_testcase_count(item, call, result):
-    parent_class = item.parent
-    class_name = parent_class.name
-    if class_name not in count:
-        count[class_name] = {"passed": 0, "failed": 0, "skipped": 0}
-
-    if result.when == "call":
-        if result.failed:
-            count[class_name]["failed"] += 1
-        elif result.skipped:
-            count[class_name]["skipped"] += 1
-        else:
-            count[class_name]["passed"] += 1

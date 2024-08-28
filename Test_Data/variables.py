@@ -1,5 +1,6 @@
 import test_cases.conftest as conftest
 
+
 # Login
 RESET_PASSWORD_PAGE = conftest.json_obj["Page Titles"]["rest_password"]
 
